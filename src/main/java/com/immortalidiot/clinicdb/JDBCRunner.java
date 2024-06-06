@@ -1,8 +1,16 @@
 package com.immortalidiot.clinicdb;
 
+import com.immortalidiot.clinicdb.collector.PairCollector;
+import com.immortalidiot.clinicdb.model.DataField;
+import org.hibernate.query.Query;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class JDBCRunner {
     private static final String PROTOCOL = "jdbc:postgresql://";
@@ -38,5 +46,16 @@ public class JDBCRunner {
             System.out.println("No database! Check the database name, path to the database, or deploy a local backup copy according to the instructions");
             throw new RuntimeException(e);
         }
+    }
+
+    private static List<DataField> mapToDataField(Query query) {
+        System.out.println(query.getQueryString());
+        List<Map<String, Object>> result =
+                query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE).getResultList();
+
+        result.forEach(System.out::println);
+
+        return result.stream().map(map ->
+                new DataField(map.entrySet().stream().collect(new PairCollector()))).collect(Collectors.toList());
     }
 }
