@@ -9,4 +9,13 @@ public class JDBCRunner {
 
     public static final String USER_NAME = "postgres";
     public static final String DATABASE_PASS = "password";
+
+    public static void checkDriver() {
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.out.println("No JDBC driver! Connect the JDBC driver to the project according to the instructions.");
+            throw new RuntimeException(e);
+        }
+    }
 }
