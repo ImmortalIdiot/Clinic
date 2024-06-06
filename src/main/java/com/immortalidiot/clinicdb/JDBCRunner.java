@@ -2,6 +2,8 @@ package com.immortalidiot.clinicdb;
 
 import com.immortalidiot.clinicdb.collector.PairCollector;
 import com.immortalidiot.clinicdb.model.DataField;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 
@@ -11,6 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static org.hibernate.cfg.JdbcSettings.*;
+import static org.hibernate.cfg.JdbcSettings.HIGHLIGHT_SQL;
 
 public class JDBCRunner {
     private static final String PROTOCOL = "jdbc:postgresql://";
@@ -23,6 +28,15 @@ public class JDBCRunner {
 
     public static final String USER_NAME = "postgres";
     public static final String DATABASE_PASS = "password";
+
+    public static final SessionFactory SESSION_FACTORY = new Configuration()
+            .setProperty(JAKARTA_JDBC_URL, DATABASE_URL)
+            .setProperty(JAKARTA_JDBC_USER, USER_NAME)
+            .setProperty(JAKARTA_JDBC_PASSWORD, DATABASE_PASS)
+            .setProperty(SHOW_SQL, true)
+            .setProperty(FORMAT_SQL, true)
+            .setProperty(HIGHLIGHT_SQL, true)
+            .buildSessionFactory();
 
     public static void initDatabase() {
         checkDriver();
