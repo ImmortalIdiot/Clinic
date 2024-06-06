@@ -16,6 +16,11 @@ public class JDBCRunner {
     public static final String USER_NAME = "postgres";
     public static final String DATABASE_PASS = "password";
 
+    public static void initDatabase() {
+        checkDriver();
+        checkDatabase();
+    }
+
     public static void checkDriver() {
         try {
             Class.forName(DRIVER);
