@@ -58,13 +58,13 @@ public class DatabaseService {
 
     public List<DataField> getAllMondayWorkers() {
         return getResponse(
-                "SELECT d.doctor_id AS \"Табельный номер\", " +
-                "d.surname AS \"Фамилия\", " +
-                "d.specialization AS \"Специальность\", " +
-                "s.time AS \"Время приёма\", " +
-                "FROM doctors d " +
-                "JOIN schedule s ON d.doctor_id = s.doctor_id\n" +
-                "WHERE s.day_of_week = 'MON';"
+                "SELECT doctors.doctor_id AS \"Табельный номер\", " +
+                "doctors.surname AS \"Фамилия\", " +
+                "doctors.specialization AS \"Специальность\", " +
+                "schedule.time AS \"Время приёма\" " +
+                "FROM doctors " +
+                "JOIN schedule ON doctors.doctor_id = schedule.doctor_id\n" +
+                "WHERE schedule.day_of_week = 'MON';"
         );
     }
 
@@ -75,11 +75,11 @@ public class DatabaseService {
                 "patronymic AS \"Отчество\", " +
                 "specialization AS \"Специальность\", " +
                 "experience AS \"Стаж\" " +
-                "FROM patients " +
+                "FROM doctors " +
                 "WHERE specialization = :param " +
                 "AND doctor_id IN " +
-                "(SELECT doctor_id FROM public.schedule " +
-                "WHERE day_of_week = 'MON');\n",
+                "(SELECT doctor_id FROM schedule " +
+                "WHERE day_of_week = 'MON');",
             specialization
         );
     }
