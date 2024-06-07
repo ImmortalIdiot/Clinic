@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.immortalidiot.clinicdb.controller.MenuController">
+   <content>
+      <VBox alignment="CENTER" prefHeight="398.0" prefWidth="201.0">
+         <children>
+            <Button fx:id="one_table" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToPatientSearcher" prefHeight="25.0" prefWidth="257.0" text="Поиск пациентов по гендеру">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
