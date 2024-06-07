@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.immortalidiot.clinicdb.controller.DigitalCopyCardController">
+   <content>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="digitalCopyCardBackButton" mnemonicParsing="false" onAction="#moveToMenu" text="Назад">
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="97.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="digitalCopyCardLabel" text="Наличие цифрового экземпляра" />
+                        <TextField fx:id="digitalCopyCardTextField" prefHeight="25.0" prefWidth="180.0">
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label fx:id="error" alignment="CENTER" textFill="RED" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="598.0">
+               <children>
+                  <Button fx:id="digitalCopyCardSearchButton" mnemonicParsing="false" onAction="#search" text="Поиск">
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="234.0" prefWidth="598.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
