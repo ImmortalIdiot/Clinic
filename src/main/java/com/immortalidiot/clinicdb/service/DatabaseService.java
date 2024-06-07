@@ -84,6 +84,24 @@ public class DatabaseService {
         );
     }
 
+    public List<DataField> getDoctorSpecializationsAndCabinets() {
+        return getResponse(
+                "SELECT DISTINCT doctors.specialization AS \"Специальность\", " +
+                "visit.cabinet_id" +
+                "FROM doctors " +
+                "INNER JOIN visit ON doctors.doctor_id = visit.doctor_id");
+    }
+
+    public List<DataField> getDoctorSpecializationsInCabinet(Integer cabinet) {
+        return getResponse(
+                "SELECT DISTINCT doctors.specialization AS \"Специальность\" " +
+                "FROM doctors " +
+                "INNER JOIN visit ON doctors.doctor_id = visit.doctor_id " +
+                "WHERE visit.cabinet_id = :param",
+                cabinet
+        );
+    }
+
     private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request);
