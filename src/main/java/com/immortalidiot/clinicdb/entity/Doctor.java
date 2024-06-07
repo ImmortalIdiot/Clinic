@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Doctor {
     @Id
     @Column(name = "doctor_id", nullable = false, unique = true)
-    public Integer doctor_id;
+    public Integer doctorId;
 
     @Column(name = "name",nullable = false)
     public String name;
@@ -29,7 +29,7 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "id=" + doctor_id +
+        return "id=" + doctorId +
                 "\t| name='" + name + '\'' +
                 "\t| surname='" + surname + "\'" +
                 "\t| patronymic='" + patronymic + "\'" +
