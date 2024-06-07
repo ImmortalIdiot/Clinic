@@ -32,7 +32,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "id=" + name +
+        return "id=" + patientId +
                 "\t| name='" + name + '\'' +
                 "\t| surname='" + surname + "\'" +
                 "\t| patronymic='" + patronymic + "\'" +
