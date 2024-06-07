@@ -34,53 +34,65 @@ public class DatabaseService {
     }
 
     public List<DataField> getPatients() {
-        Session session = sessionFactory.openSession();
-        Query query = session.createNativeQuery("SELECT name, " +
-                "surname AS \"Фамилия\"," +
-                "patronymic AS \"Отчество\"," +
-                "age AS \"Возраст\"," +
-                "gender AS \"Пол\"," +
-                "phone_number AS \"Номер телефона\"" +
-                " FROM patients");
-        return mapToDataField(query);
+        return getResponse(
+                "SELECT name AS \"Имя\", " +
+                "surname AS \"Фамилия\", " +
+                "patronymic AS \"Отчество\", " +
+                "age AS \"Возраст\", " +
+                "gender AS \"Пол\", " +
+                "phone_number AS \"Номер телефона\" " +
+                "FROM patients"
+        );
     }
 
     public List<DataField> getPatientsByGender(String gender) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
-                        "surname AS \"Фамилия\"," +
-                        "patronymic AS \"Отчество\"" +
-                        " FROM patients WHERE gender = :gender")
-                .setParameter("gender", gender);
-        return mapToDataField(query);
+        return getResponse(
+                "SELECT name AS \"Имя\", " +
+                "surname AS \"Фамилия\", " +
+                "patronymic AS \"Отчество\" " +
+                "FROM patients " +
+                "WHERE gender = :param",
+                gender
+        );
     }
 
     public List<DataField> getAllMondayWorkers() {
-        Session session = sessionFactory.openSession();
-        Query query = session.createNativeQuery("SELECT " +
-                "d.doctor_id AS \"Табельный номер\", " +
+        return getResponse(
+                "SELECT d.doctor_id AS \"Табельный номер\", " +
                 "d.surname AS \"Фамилия\", " +
                 "d.specialization AS \"Специальность\", " +
                 "s.time AS \"Время приёма\", " +
-                "FROM doctors d\n" +
+                "FROM doctors d " +
                 "JOIN schedule s ON d.doctor_id = s.doctor_id\n" +
-                "WHERE s.day_of_week = 'MON';");
-        return mapToDataField(query);
+                "WHERE s.day_of_week = 'MON';"
+        );
     }
 
     public List<DataField> getMondayWorkers(String specialization) {
+        return getResponse(
+                "SELECT name AS \"Имя\", " +
+                "surname AS \"Фамилия\", " +
+                "patronymic AS \"Отчество\", " +
+                "specialization AS \"Специальность\", " +
+                "experience AS \"Стаж\" " +
+                "FROM patients " +
+                "WHERE specialization = :param " +
+                "AND doctor_id IN " +
+                "(SELECT doctor_id FROM public.schedule " +
+                "WHERE day_of_week = 'MON');\n",
+            specialization
+        );
+    }
+
+    private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
-        Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
-                        "surname AS \"Фамилия\", " +
-                        "patronymic AS \"Отчество\", " +
-                        "specialization AS \"Специальность\", " +
-                        "experience AS \"Стаж\" " +
-                        "FROM patients " +
-                        "WHERE specialization = :specialization\n" +
-                        "\tAND doctor_id IN \n" +
-                        "\t(SELECT doctor_id FROM public.schedule\n" +
-                        "\t WHERE day_of_week = 'MON');\n")
-                .setParameter("specialization", specialization);
+        Query query = session.createNativeQuery(request);
+        return mapToDataField(query);
+    }
+
+    private List<DataField> getResponse(String request, String param) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createNativeQuery(request).setParameter("param", param);
         return mapToDataField(query);
     }
 }
