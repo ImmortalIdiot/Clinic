@@ -29,21 +29,24 @@ public class MenuController {
 
     @FXML
     protected void moveToPatientSearcher(ActionEvent event) throws IOException {
-        Parent patientSearcherView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("patient-searcher.fxml")));
-        Scene patientSearcherScene = new Scene(patientSearcherView, 1024, 720);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(patientSearcherScene);
+        moveToScreen(event, "patient-searcher.fxml");
     }
 
     @FXML
     protected void moveToMondayWorker(ActionEvent event) throws IOException {
-        Parent mondayWorkerView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("mon-worker.fxml")));
-        Scene mondayWorkerScene = new Scene(mondayWorkerView, 1024, 720);
+        moveToScreen(event, "mon-worker.fxml");
+    }
+
+    @FXML
+    protected void moveToScreen(ActionEvent event, String resource) throws IOException {
+        if (resource.isEmpty()) return;
+        if (!resource.contains(".fxml")) return;
+
+        Parent view = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(resource)));
+        Scene viewScene = new Scene(view, 1024, 720);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
-        window.setScene(mondayWorkerScene);
+        window.setScene(viewScene);
     }
 }
