@@ -102,6 +102,30 @@ public class DatabaseService {
         );
     }
 
+
+    public List<DataField> getPatientsWithCards() {
+        return getResponse("SELECT patients.surname AS \"Фамилия\", " +
+                "medical_cards.card_id AS \"Номер карты\", " +
+                "medical_cards.has_digital_copy AS \"Наличие цифрового экземпляра\", " +
+                "visit.diagnosis AS \"Диагноз\" " +
+                "FROM patients " +
+                "INNER JOIN medical_cards ON patients.patient_id = medical_cards.patient_id " +
+                "INNER JOIN visit ON visit.patient_card_id = medical_cards.card_id");
+    }
+
+    public List<DataField> getPatientsWithDigitalTypeCards(Boolean isDigitalCopy) {
+        return getResponse(
+                "SELECT patients.surname AS \"Фамилия\", " +
+                        "medical_cards.card_id AS \"Номер карты\", " +
+                        "visit.diagnosis AS \"Диагноз\" " +
+                        "FROM patients " +
+                        "INNER JOIN medical_cards ON patients.patient_id = medical_cards.patient_id " +
+                        "INNER JOIN visit ON visit.patient_card_id = medical_cards.card_id " +
+                        "WHERE medical_cards.has_digital_copy = :param",
+                isDigitalCopy
+        );
+    }
+
     private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request);
