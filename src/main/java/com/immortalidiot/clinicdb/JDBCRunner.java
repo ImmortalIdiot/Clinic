@@ -1,5 +1,6 @@
 package com.immortalidiot.clinicdb;
 
+import com.immortalidiot.clinicdb.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,6 +23,12 @@ public class JDBCRunner {
     public static final String DATABASE_PASS = "password";
 
     public static final SessionFactory SESSION_FACTORY = new Configuration()
+            .addAnnotatedClass(Cabinet.class)
+            .addAnnotatedClass(Doctor.class)
+            .addAnnotatedClass(MedicalCard.class)
+            .addAnnotatedClass(Patient.class)
+            .addAnnotatedClass(Schedule.class)
+            .addAnnotatedClass(Visit.class)
             .setProperty(JAKARTA_JDBC_URL, DATABASE_URL)
             .setProperty(JAKARTA_JDBC_USER, USER_NAME)
             .setProperty(JAKARTA_JDBC_PASSWORD, DATABASE_PASS)
