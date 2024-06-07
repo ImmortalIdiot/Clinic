@@ -11,7 +11,7 @@ public class Schedule {
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
-    public Integer doctorId;
+    public Doctor doctor;
 
     @Column(name = "day_of_week", nullable = false)
     public String dayOfWeek;
@@ -22,7 +22,7 @@ public class Schedule {
     @Override
     public String toString() {
         return "id=" + scheduleId +
-                "\t| doctorId='" + doctorId + '\'' +
+                "\t| doctorId='" + doctor + '\'' +
                 "\t| dayOfWeek='" + dayOfWeek + "\'" +
                 "\t| time='" + time + "\'";
     }

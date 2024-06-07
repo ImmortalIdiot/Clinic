@@ -11,15 +11,15 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
-    public Integer doctorId;
+    public Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "patient_card_id", nullable = false)
-    public Integer patientCardId;
+    public MedicalCard medicalCard;
 
     @ManyToOne
     @JoinColumn(name = "cabinet_id", nullable = false)
-    public Integer cabinetId;
+    public Cabinet cabinet;
 
     @Column(name = "full_time_visit", nullable = false)
     public String timeVisit;
@@ -33,9 +33,9 @@ public class Visit {
     @Override
     public String toString() {
         return "visit_id=" + visitId +
-                "\t| doctor_id='" + doctorId + '\'' +
-                "\t| patient_card_id='" + patientCardId + "\'" +
-                "\t| cabinet_id='" + cabinetId + "\'" +
+                "\t| doctor='" + doctor + '\'' +
+                "\t| medical_card='" + medicalCard + "\'" +
+                "\t| cabinet='" + cabinet + "\'" +
                 "\t| full_time_visit='" + timeVisit + "\'" +
                 "\t| diagnosis='" + diagnosis + "\'" +
                 "\t| treatment='" + treatment + "\'";

@@ -11,7 +11,7 @@ public class MedicalCard {
 
     @OneToOne
     @JoinColumn(name = "patient_id", nullable = false)
-    public Integer patientId;
+    public Patient patient;
 
     @Column(name = "has_digital_copy", nullable = false)
     public Boolean hasDigitalCopy;
@@ -22,7 +22,7 @@ public class MedicalCard {
     @Override
     public String toString() {
         return "card_id=" + cardId +
-                "\t| patient_id='" + patientId + '\'' +
+                "\t| patient='" + patient + '\'' +
                 "\t| hasDigitalCopy='" + hasDigitalCopy + "\'" +
                 "\t| history='" + history + "\'";
     }
