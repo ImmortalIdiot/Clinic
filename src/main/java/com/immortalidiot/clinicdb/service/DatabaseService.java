@@ -119,4 +119,10 @@ public class DatabaseService {
         Query query = session.createNativeQuery(request).setParameter("param", param);
         return mapToDataField(query);
     }
+
+    private List<DataField> getResponse(String request, Boolean param) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createNativeQuery(request).setParameter("param", param);
+        return mapToDataField(query);
+    }
 }
