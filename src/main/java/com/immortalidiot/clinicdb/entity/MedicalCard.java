@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class MedicalCard {
     @Id
     @Column(name = "card_id", nullable = false, unique = true)
-    public Integer card_id;
+    public Integer cardId;
 
     @OneToOne
     @JoinColumn(name = "patient_id", nullable = false)
@@ -21,7 +21,7 @@ public class MedicalCard {
 
     @Override
     public String toString() {
-        return "card_id=" + card_id +
+        return "card_id=" + cardId +
                 "\t| patient_id='" + patientId + '\'' +
                 "\t| hasDigitalCopy='" + hasDigitalCopy + "\'" +
                 "\t| history='" + history + "\'";
