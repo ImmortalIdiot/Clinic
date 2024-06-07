@@ -10,13 +10,13 @@ import jakarta.persistence.Table;
 public class Cabinet {
     @Id
     @Column(name = "cabinet_id", updatable = false, nullable = false, insertable = false, unique = true)
-    public Integer cabinet_id;
+    public Integer cabinetId;
 
     @Column(name = "floor", nullable = false)
     public Integer floor;
 
     @Override
     public String toString() {
-        return "id=" + cabinet_id + "\t| floor='" + floor + '\'';
+        return "id=" + cabinetId + "\t| floor='" + floor + '\'';
     }
 }
