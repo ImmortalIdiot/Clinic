@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Patient {
     @Id
     @Column(name = "patient_id", nullable = false, unique = true)
-    public Integer patient_id;
+    public Integer patientId;
 
     @Column(name = "name", nullable = false)
     public String name;
