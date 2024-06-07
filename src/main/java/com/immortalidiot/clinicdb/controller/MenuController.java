@@ -38,6 +38,11 @@ public class MenuController {
     }
 
     @FXML
+    protected void moveToDoctorsInCabinet(ActionEvent event) throws IOException {
+        moveToScreen(event, "doctors-in-cabinet.fxml");
+    }
+
+    @FXML
     protected void moveToScreen(ActionEvent event, String resource) throws IOException {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;
