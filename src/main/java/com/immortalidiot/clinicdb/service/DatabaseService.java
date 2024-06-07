@@ -2,6 +2,7 @@ package com.immortalidiot.clinicdb.service;
 
 import com.immortalidiot.clinicdb.collector.PairCollector;
 import com.immortalidiot.clinicdb.model.DataField;
+import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
@@ -30,5 +31,27 @@ public class DatabaseService {
                 .stream()
                 .collect(new PairCollector()))).collect(Collectors.toList()
         );
+    }
+
+    public void getPatients() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
+                "surname AS \"Фамилия\"" +
+                "patronymic AS \"Отчество\"" +
+                "age AS \"Возраст\"" +
+                "gender AS \"Пол\"" +
+                "phone_number AS \"Номер телефона\"" +
+                " FROM patients");
+        mapToDataField(query);
+    }
+
+    public void getPatientsByGender(Character gender) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
+                            "surname AS \"Фамилия\"" +
+                            "patronymic AS \"Отчество\"" +
+                            " FROM patients WHERE gender = :gender")
+                    .setParameter("gender", gender);
+        mapToDataField(query);
     }
 }
