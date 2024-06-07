@@ -13,5 +13,10 @@ module com.immortalidiot.clinicdb {
     requires java.naming;
 
     opens com.immortalidiot.clinicdb to javafx.fxml;
+    opens com.immortalidiot.clinicdb.controller to javafx.fxml;
+    opens com.immortalidiot.clinicdb.entity to org.hibernate.orm.core;
+
     exports com.immortalidiot.clinicdb;
+    exports com.immortalidiot.clinicdb.controller;
+    exports com.immortalidiot.clinicdb.entity;
 }
