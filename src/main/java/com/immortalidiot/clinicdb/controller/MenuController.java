@@ -16,34 +16,34 @@ import java.util.Objects;
 public class MenuController {
 
     @FXML
-    private Button one_table;
+    private Button patient_searcher;
 
     @FXML
     private Button monday_therapist;
 
     @FXML
     void initialize() {
-        assert one_table != null : "fx:id=\"one_table\" was not injected: check your FXML file 'Untitled'.";
+        assert patient_searcher != null : "fx:id=\"patient_searcher\" was not injected: check your FXML file 'Untitled'.";
         assert monday_therapist != null : "fx:id=\"monday_therapist\" was not injected: check your FXML file 'Untitled'.";
     }
 
     @FXML
     protected void moveToPatientSearcher(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("patient-searcher.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent patientSearcherView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("patient-searcher.fxml")));
+        Scene patientSearcherScene = new Scene(patientSearcherView, 1024, 720);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
-        window.setScene(firstTableViewScene);
+        window.setScene(patientSearcherScene);
     }
 
     @FXML
     protected void moveToMondayWorker(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("mon-worker.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent mondayWorkerView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("mon-worker.fxml")));
+        Scene mondayWorkerScene = new Scene(mondayWorkerView, 1024, 720);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
-        window.setScene(firstTableViewScene);
+        window.setScene(mondayWorkerScene);
     }
 }
