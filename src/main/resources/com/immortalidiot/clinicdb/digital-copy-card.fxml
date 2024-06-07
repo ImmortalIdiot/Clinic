@@ -42,7 +42,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="234.0" prefWidth="598.0">
+            <TableView fx:id="digitalCopyCardTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="234.0" prefWidth="598.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
