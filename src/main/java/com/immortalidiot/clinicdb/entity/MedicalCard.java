@@ -16,7 +16,7 @@ public class MedicalCard {
     @Column(name = "has_digital_copy", nullable = false)
     public Boolean hasDigitalCopy;
 
-    @Column
+    @Column(name = "history")
     public String[] history;
 
     @Override

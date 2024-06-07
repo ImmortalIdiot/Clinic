@@ -12,19 +12,19 @@ public class Doctor {
     @Column(name = "doctor_id", nullable = false, unique = true)
     public Integer doctor_id;
 
-    @Column(nullable = false)
+    @Column(name = "name",nullable = false)
     public String name;
 
-    @Column(nullable = false)
+    @Column(name = "surname", nullable = false)
     public String surname;
 
-    @Column
+    @Column(name = "patronymic")
     public String patronymic;
 
-    @Column(nullable = false)
+    @Column(name = "specialization", nullable = false)
     public String specialization;
 
-    @Column(nullable = false)
+    @Column(name = "experience", nullable = false)
     public Integer experience;
 
     @Override

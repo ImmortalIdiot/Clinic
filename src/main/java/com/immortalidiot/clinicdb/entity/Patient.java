@@ -12,22 +12,22 @@ public class Patient {
     @Column(name = "patient_id", nullable = false, unique = true)
     public Integer patient_id;
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     public String name;
 
-    @Column(nullable = false)
+    @Column(name = "surname", nullable = false)
     public String surname;
 
-    @Column
+    @Column(name = "patronymic")
     public String patronymic;
 
-    @Column(nullable = false)
+    @Column(name = "age", nullable = false)
     public Integer age;
 
-    @Column(nullable = false)
+    @Column(name = "gender", nullable = false)
     public Character gender;
 
-    @Column
+    @Column(name = "phone_number")
     public String phoneNumber;
 
     @Override
