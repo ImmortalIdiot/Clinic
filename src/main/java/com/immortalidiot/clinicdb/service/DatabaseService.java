@@ -33,25 +33,25 @@ public class DatabaseService {
         );
     }
 
-    public void getPatients() {
+    public List<DataField> getPatients() {
         Session session = sessionFactory.openSession();
-        Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
-                "surname AS \"Фамилия\"" +
-                "patronymic AS \"Отчество\"" +
-                "age AS \"Возраст\"" +
-                "gender AS \"Пол\"" +
+        Query query = session.createNativeQuery("SELECT name, " +
+                "surname AS \"Фамилия\"," +
+                "patronymic AS \"Отчество\"," +
+                "age AS \"Возраст\"," +
+                "gender AS \"Пол\"," +
                 "phone_number AS \"Номер телефона\"" +
                 " FROM patients");
-        mapToDataField(query);
+        return mapToDataField(query);
     }
 
-    public void getPatientsByGender(Character gender) {
+    public List<DataField> getPatientsByGender(String gender) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery("SELECT name AS \"Имя\", " +
-                            "surname AS \"Фамилия\"" +
+                            "surname AS \"Фамилия\"," +
                             "patronymic AS \"Отчество\"" +
                             " FROM patients WHERE gender = :gender")
                     .setParameter("gender", gender);
-        mapToDataField(query);
+        return mapToDataField(query);
     }
 }
