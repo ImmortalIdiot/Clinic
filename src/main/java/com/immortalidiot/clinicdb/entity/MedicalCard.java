@@ -18,4 +18,12 @@ public class MedicalCard {
 
     @Column
     public String[] history;
+
+    @Override
+    public String toString() {
+        return "card_id=" + card_id +
+                "\t| patient_id='" + patientId + '\'' +
+                "\t| hasDigitalCopy='" + hasDigitalCopy + "\'" +
+                "\t| history='" + history + "\'";
+    }
 }
