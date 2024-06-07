@@ -12,7 +12,7 @@ public class Cabinet {
     @Column(name = "cabinet_id", updatable = false, nullable = false, insertable = false, unique = true)
     public Integer cabinet_id;
 
-    @Column
+    @Column(nullable = false)
     public Integer floor;
 
     @Override

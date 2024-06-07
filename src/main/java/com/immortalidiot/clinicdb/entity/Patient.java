@@ -12,19 +12,19 @@ public class Patient {
     @Column(name = "patient_id", nullable = false, unique = true)
     public Integer patient_id;
 
-    @Column
+    @Column(nullable = false)
     public String name;
 
-    @Column
+    @Column(nullable = false)
     public String surname;
 
     @Column
     public String patronymic;
 
-    @Column
+    @Column(nullable = false)
     public Integer age;
 
-    @Column
+    @Column(nullable = false)
     public Character gender;
 
     @Column
