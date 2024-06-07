@@ -87,7 +87,7 @@ public class DatabaseService {
     public List<DataField> getDoctorSpecializationsAndCabinets() {
         return getResponse(
                 "SELECT DISTINCT doctors.specialization AS \"Специальность\", " +
-                "visit.cabinet_id" +
+                "visit.cabinet_id AS \"Номер кабинета\" " +
                 "FROM doctors " +
                 "INNER JOIN visit ON doctors.doctor_id = visit.doctor_id");
     }
