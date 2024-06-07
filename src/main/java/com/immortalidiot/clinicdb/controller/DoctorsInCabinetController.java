@@ -2,11 +2,15 @@ package com.immortalidiot.clinicdb.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.immortalidiot.clinicdb.HelloApplication;
+import com.immortalidiot.clinicdb.JDBCRunner;
 import com.immortalidiot.clinicdb.model.DataField;
+import com.immortalidiot.clinicdb.service.DatabaseService;
+import com.immortalidiot.clinicdb.writer.TableWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,8 @@ import javafx.stage.Stage;
 
 public class DoctorsInCabinetController {
 
+    private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
+
     @FXML
     private ResourceBundle resources;
 
@@ -31,7 +37,7 @@ public class DoctorsInCabinetController {
     private Button First_table_back;
 
     @FXML
-    private TextField first_table_input_place_field;
+    private TextField textField;
 
     @FXML
     private Label first_table_input_place_label;
@@ -43,7 +49,7 @@ public class DoctorsInCabinetController {
     private Button first_table_search_button;
 
     @FXML
-    private TableView<DataField> first_table_table_view;
+    private TableView<DataField> tableView;
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
@@ -57,16 +63,30 @@ public class DoctorsInCabinetController {
 
     @FXML
     protected void search() {
-        //TODO: implement sending request
+        String text = textField.getText();
+
+        if (text.isBlank()) {
+            List<DataField> data = databaseService.getDoctorSpecializationsAndCabinets();
+            error.setText("");
+            TableWriter.write(tableView, data);
+        } else {
+            try {
+                List<DataField> data = databaseService.getDoctorSpecializationsInCabinet(Integer.parseInt(text));
+                error.setText("");
+                TableWriter.write(tableView, data);
+            } catch (NumberFormatException e) {
+                error.setText(e.getMessage());
+            }
+        }
     }
 
     @FXML
     void initialize() {
         assert First_table_back != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert first_table_input_place_field != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert textField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
         assert first_table_input_place_label != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
         assert first_table_search_button != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert first_table_table_view != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert tableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
 
     }
 
