@@ -63,7 +63,23 @@ public class DigitalCopyCardController {
 
     @FXML
     protected void search() {
-        //TODO: implement sending request
+        String text = digitalCopyCardTextField.getText();
+
+        if (text.isBlank()) {
+            List<DataField> data = databaseService.getPatientsWithCards();
+            error.setText("");
+            TableWriter.write(digitalCopyCardTableView, data);
+        } else {
+            boolean isDigitalCopy;
+            switch (text.toLowerCase()) {
+                case "да", "true", "правда", "t", "yes", "y", "п" ->  isDigitalCopy = true;
+                default -> isDigitalCopy = false;
+            }
+
+            List<DataField> data = databaseService.getPatientsWithDigitalTypeCards(isDigitalCopy);
+            error.setText("");
+            TableWriter.write(digitalCopyCardTableView, data);
+        }
     }
 
     @FXML
@@ -73,7 +89,5 @@ public class DigitalCopyCardController {
         assert digitalCopyCardLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
         assert digitalCopyCardSearchButton != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
         assert digitalCopyCardTableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
-
     }
-
 }
