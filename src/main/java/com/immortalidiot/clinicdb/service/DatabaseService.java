@@ -163,56 +163,6 @@ public class DatabaseService {
         );
     }
 
-    public List<DataField> addUserWithoutPhoneNumber(
-            String surname,
-            String name,
-            String patronymic,
-            Integer age,
-            String gender
-    ) {
-        return getResponse(
-                "WITH new_patient " +
-                        "AS (INSERT INTO patients (surname, name, patronymic, age, gender, phone_number) " +
-                        "VALUES (:surname, :name, :patronymic, :age, :gender, '-') " +
-                        "RETURNING patient_id) " +
-                        "INSERT INTO medical_cards (patient_id, has_digital_copy) " +
-                        "SELECT patient_id, false FROM new_patient; " +
-                        "\n" +
-                        "SELECT * FROM patients;",
-                surname,
-                name,
-                patronymic,
-                age,
-                gender
-        );
-    }
-
-    public List<DataField> addUserWithPhoneNumber(
-            String surname,
-            String name,
-            String patronymic,
-            Integer age,
-            String gender,
-            String phoneNumber
-    ) {
-        return getResponse(
-                "WITH new_patient " +
-                        "AS (INSERT INTO patients (surname, name, patronymic, age, gender, phone_number) " +
-                        "VALUES (:surname, :name, :patronymic, :age, :gender, :phoneNumber) " +
-                        "RETURNING patient_id) " +
-                        "INSERT INTO medical_cards (patient_id, has_digital_copy) " +
-                        "SELECT patient_id, false FROM new_patient; " +
-                        "\n" +
-                        "SELECT * FROM patients;",
-                surname,
-                name,
-                patronymic,
-                age,
-                gender,
-                phoneNumber
-        );
-    }
-
     private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request);
@@ -234,46 +184,6 @@ public class DatabaseService {
     private List<DataField> getResponse(String request, Boolean param) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request).setParameter("param", param);
-        return mapToDataField(query);
-    }
-
-    private List<DataField> getResponse(
-            String request,
-            String surname,
-            String name,
-            String patronymic,
-            Integer age,
-            String gender,
-            String phoneNumber
-    ) {
-        Session session = sessionFactory.openSession();
-        Query query = session
-                .createNativeQuery(request)
-                .setParameter("surname", surname)
-                .setParameter("name", name)
-                .setParameter("patronymic", patronymic)
-                .setParameter("age", age)
-                .setParameter("gender", gender)
-                .setParameter("phoneNumber", phoneNumber);
-        return mapToDataField(query);
-    }
-
-    private List<DataField> getResponse(
-            String request,
-            String surname,
-            String name,
-            String patronymic,
-            Integer age,
-            String gender
-    ) {
-        Session session = sessionFactory.openSession();
-        Query query = session
-                .createNativeQuery(request)
-                .setParameter("surname", surname)
-                .setParameter("name", name)
-                .setParameter("patronymic", patronymic)
-                .setParameter("age", age)
-                .setParameter("gender", gender);
         return mapToDataField(query);
     }
 }
