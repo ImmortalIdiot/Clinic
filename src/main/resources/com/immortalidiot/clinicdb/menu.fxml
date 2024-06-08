@@ -9,42 +9,42 @@
    <content>
       <VBox alignment="CENTER" prefHeight="398.0" prefWidth="201.0">
          <children>
-            <Button fx:id="patient_searcher" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToPatientSearcher" prefHeight="25.0" prefWidth="255.0" text="Гендер пациента">
+            <Button fx:id="patientSearcher" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToPatientSearcher" prefHeight="25.0" prefWidth="255.0" text="Гендер пациента">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="monday_therapist" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToMondayWorker" prefHeight="25.0" prefWidth="255.0" text="Специалист в понедельник">
+            <Button fx:id="mondayTherapist" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToMondayWorker" prefHeight="25.0" prefWidth="255.0" text="Специалист в понедельник">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="doctors_in_cabinets" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToDoctorsInCabinet" prefHeight="25.0" prefWidth="255.0" text="Кабинет специалиста">
+            <Button fx:id="doctorsInCabinets" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToDoctorsInCabinet" prefHeight="25.0" prefWidth="255.0" text="Кабинет специалиста">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="digital_copy_card" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToDigitalCopyCard" prefHeight="25.0" prefWidth="255.0" text="Цифровая копия мед карты">
+            <Button fx:id="digitalCopyCard" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToDigitalCopyCard" prefHeight="25.0" prefWidth="255.0" text="Цифровая копия мед карты">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="visit_info" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToVisitInfo" prefHeight="25.0" prefWidth="255.0" text="Информация о посещении">
+            <Button fx:id="visitInfo" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToVisitInfo" prefHeight="25.0" prefWidth="255.0" text="Информация о посещении">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="add_patient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToAddPatient" prefHeight="25.0" prefWidth="255.0" text="Добавить пациента">
+            <Button fx:id="addPatient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToAddPatient" prefHeight="25.0" prefWidth="255.0" text="Добавить пациента">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="edit_age" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToEditAge" prefHeight="25.0" prefWidth="255.0" text="Изменить возраст пациента">
+            <Button fx:id="editAge" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToEditAge" prefHeight="25.0" prefWidth="255.0" text="Изменить возраст пациента">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="remove_patient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToRemovePatient" prefHeight="25.0" prefWidth="255.0" text="Удалить пациента по ФИО">
+            <Button fx:id="removePatient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToRemovePatient" prefHeight="25.0" prefWidth="255.0" text="Удалить пациента по ФИО">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

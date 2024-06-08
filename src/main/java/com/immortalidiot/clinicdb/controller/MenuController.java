@@ -16,15 +16,39 @@ import java.util.Objects;
 public class MenuController {
 
     @FXML
-    private Button patient_searcher;
+    private Button patientSearcher;
 
     @FXML
-    private Button monday_therapist;
+    private Button mondayTherapist;
+
+    @FXML
+    private Button doctorsInCabinets;
+
+    @FXML
+    private Button digitalCopyCard;
+
+    @FXML
+    private Button visitInfo;
+
+    @FXML
+    private Button addPatient;
+
+    @FXML
+    private Button editAge;
+
+    @FXML
+    private Button removePatient;
 
     @FXML
     void initialize() {
-        assert patient_searcher != null : "fx:id=\"patient_searcher\" was not injected: check your FXML file 'Untitled'.";
-        assert monday_therapist != null : "fx:id=\"monday_therapist\" was not injected: check your FXML file 'Untitled'.";
+        assert patientSearcher != null : "fx:id=\"patientSearcher\" was not injected: check your FXML file 'menu.fxml'.";
+        assert mondayTherapist != null : "fx:id=\"mondayTherapist\" was not injected: check your FXML file 'menu.fxml'.";
+        assert doctorsInCabinets != null : "fx:id=\"doctorsInCabinets\" was not injected: check your FXML file 'menu.fxml'.";
+        assert digitalCopyCard != null : "fx:id=\"digitalCopyCard\" was not injected: check your FXML file 'menu.fxml'.";
+        assert visitInfo != null : "fx:id=\"visitInfo\" was not injected: check your FXML file 'menu.fxml'.";
+        assert addPatient != null : "fx:id=\"addPatient\" was not injected: check your FXML file 'menu.fxml'.";
+        assert editAge != null : "fx:id=\"editAge\" was not injected: check your FXML file 'menu.fxml'.";
+        assert removePatient != null : "fx:id=\"removePatient\" was not injected: check your FXML file 'menu.fxml'.";
     }
 
     @FXML
