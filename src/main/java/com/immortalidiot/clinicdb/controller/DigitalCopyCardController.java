@@ -76,10 +76,10 @@ public class DigitalCopyCardController {
 
     @FXML
     void initialize() {
-        assert digitalCopyCardBackButton != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert digitalCopyCardTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert digitalCopyCardLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert digitalCopyCardSearchButton != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert digitalCopyCardTableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert digitalCopyCardBackButton != null : "fx:id=\"digitalCopyCardBackButton\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert digitalCopyCardTextField != null : "fx:id=\"digitalCopyCardTextField\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert digitalCopyCardLabel != null : "fx:id=\"digitalCopyCardLabel\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert digitalCopyCardSearchButton != null : "fx:id=\"digitalCopyCardSearchButton\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert digitalCopyCardTableView != null : "fx:id=\"digitalCopyCardTableView\" was not injected: check your FXML file 'third_table.fxml'.";
     }
 }
