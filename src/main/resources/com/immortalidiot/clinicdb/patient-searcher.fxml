@@ -13,7 +13,7 @@
    <content>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Button fx:id="First_table_back" mnemonicParsing="false" onAction="#moveToMenu" text="Назад">
+            <Button fx:id="patientSearcherBackButton" mnemonicParsing="false" onAction="#moveToMenu" text="Назад">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
@@ -25,8 +25,8 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="firs_table_input_count_label" text="Введите гендер" />
-                        <TextField fx:id="field" prefHeight="25.0" prefWidth="133.0" />
+                        <Label fx:id="patientSearcherLabel" text="Введите гендер" />
+                        <TextField fx:id="patientSearcherTextField" prefHeight="25.0" prefWidth="133.0" />
                         <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="17.0" prefWidth="386.0" textAlignment="JUSTIFY" textFill="#f50101" />
                      </children>
                      <padding>
@@ -37,14 +37,14 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="598.0">
                <children>
-                  <Button fx:id="first_table_search_button" mnemonicParsing="false" onAction="#search" text="Поиск">
+                  <Button fx:id="patientSearcherSearchButton" mnemonicParsing="false" onAction="#search" text="Поиск">
                      <HBox.margin>
                         <Insets bottom="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="234.0" prefWidth="598.0">
+            <TableView fx:id="patientSearcherTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="234.0" prefWidth="598.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>

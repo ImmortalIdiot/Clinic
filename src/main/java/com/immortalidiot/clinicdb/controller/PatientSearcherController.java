@@ -26,30 +26,23 @@ public class PatientSearcherController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
 
+    @FXML
+    private Button patientSearcherBackButton;
 
     @FXML
-    private Button First_table_back;
+    private Label patientSearcherLabel;
 
     @FXML
-    private Label firs_table_input_count_label;
-
-    @FXML
-    private TextField field;
-
-    @FXML
-    private TextField first_table_input_place_field;
-
-    @FXML
-    private Label first_table_input_place_label;
+    private TextField patientSearcherTextField;
 
     @FXML
     private Label error;
 
     @FXML
-    private Button first_table_search_button;
+    private Button patientSearcherSearchButton;
 
     @FXML
-    private TableView<DataField> tableView;
+    private TableView<DataField> patientSearcherTableView;
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
@@ -62,12 +55,12 @@ public class PatientSearcherController {
 
     @FXML
     protected void search() {
-        String text = field.getText();
+        String text = patientSearcherTextField.getText();
 
         if (text.isBlank()) {
             List<DataField> data = databaseService.getPatients();
             error.setText("");
-            TableWriter.write(tableView, data);
+            TableWriter.write(patientSearcherTableView, data);
         } else {
             try {
                 String gender;
@@ -77,7 +70,7 @@ public class PatientSearcherController {
                 }
                 List<DataField> data = databaseService.getPatientsByGender(gender);
                 error.setText("");
-                TableWriter.write(tableView, data);
+                TableWriter.write(patientSearcherTableView, data);
             } catch (Exception e) {
                 error.setText(e.getMessage());
             }
@@ -86,12 +79,10 @@ public class PatientSearcherController {
 
     @FXML
     void initialize() {
-        assert First_table_back != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert firs_table_input_count_label != null : "fx:id=\"firs_table_input_count_label\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert field != null : "fx:id=\"first_table_input_count_field\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert first_table_input_place_field != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert first_table_input_place_label != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert first_table_search_button != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'first_table.fxml'.";
-        assert tableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'first_table.fxml'.";
+        assert patientSearcherBackButton != null : "fx:id=\"patientSearcherBackButton\" was not injected: check your FXML file 'patient-searcher.fxml'.";
+        assert patientSearcherLabel != null : "fx:id=\"patientSearcherLabel\" was not injected: check your FXML file 'patient-searcher.fxml'.";
+        assert patientSearcherTextField != null : "fx:id=\"patientSearcherTextField\" was not injected: check your FXML file 'patient-searcher.fxml'.";
+        assert patientSearcherSearchButton != null : "fx:id=\"patientSearcherSearchButton\" was not injected: check your FXML file 'patient-searcher.fxml'.";
+        assert patientSearcherTableView != null : "fx:id=\"patientSearcherTableView\" was not injected: check your FXML file 'patient-searcher.fxml'.";
     }
 }
