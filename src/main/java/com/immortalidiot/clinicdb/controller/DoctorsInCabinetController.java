@@ -80,11 +80,11 @@ public class DoctorsInCabinetController {
 
     @FXML
     void initialize() {
-        assert doctorInCabinetBackButton != null : "fx:id=\"doctorInCabinetBackButton\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert doctorInCabinetTextField != null : "fx:id=\"doctorInCabinetTextField\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert doctorInCabinetLabel != null : "fx:id=\"doctorInCabinetLabel\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert doctorInCabinetSearchButton != null : "fx:id=\"doctorInCabinetSearchButton\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert doctorInCabinetTableView != null : "fx:id=\"doctorInCabinetTableView\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetBackButton != null : "fx:id=\"doctorInCabinetBackButton\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetTextField != null : "fx:id=\"doctorInCabinetTextField\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetLabel != null : "fx:id=\"doctorInCabinetLabel\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetSearchButton != null : "fx:id=\"doctorInCabinetSearchButton\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetTableView != null : "fx:id=\"doctorInCabinetTableView\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
 
     }
 
