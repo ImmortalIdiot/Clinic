@@ -1,7 +1,10 @@
 package com.immortalidiot.clinicdb.controller;
 
 import com.immortalidiot.clinicdb.ClinicDB;
+import com.immortalidiot.clinicdb.JDBCRunner;
 import com.immortalidiot.clinicdb.model.DataField;
+import com.immortalidiot.clinicdb.service.DatabaseService;
+import com.immortalidiot.clinicdb.writer.TableWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class RawQueryController {
+
+    private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
 
     @FXML
     private Button rawQueryBackButton;
@@ -49,9 +55,21 @@ public class RawQueryController {
     }
 
     @FXML
-    void search(ActionEvent event) {
-        //TODO: implement sending request
+    void search() {
+        String text = rawQueryTextField.getText();
+
+        try {
+            validateInputField(text);
+
+            List<DataField> data = databaseService.getRawQueryResponse(text);
+            error.setText("");
+            TableWriter.write(rawQueryTableView, data);
+        } catch (IllegalArgumentException e) {
+            error.setText("Поле с запросом не должно быть пустым!");
+        }
     }
+
+    private void validateInputField(String field) { if (field.isBlank()) throw new IllegalArgumentException(); }
 
     @FXML
     void initialize() {
