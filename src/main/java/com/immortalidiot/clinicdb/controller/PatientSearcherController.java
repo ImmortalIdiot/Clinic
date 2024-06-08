@@ -63,17 +63,26 @@ public class PatientSearcherController {
             TableWriter.write(patientSearcherTableView, data);
         } else {
             try {
-                String gender;
-                switch (text.toLowerCase(Locale.ROOT)) {
-                    case "м", "мужской", "m", "male" -> gender = "М";
-                    default -> gender = "Ж";
-                }
+                String gender = validateGender(text);
+
                 List<DataField> data = databaseService.getPatientsByGender(gender);
                 error.setText("");
                 TableWriter.write(patientSearcherTableView, data);
-            } catch (Exception e) {
-                error.setText(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                error.setText("Некорректный пол!");
             }
+        }
+    }
+
+    private String validateGender(String gender) {
+        switch (gender.toLowerCase(Locale.ROOT)) {
+            case "м", "мужской", "m", "male" -> {
+                return  "М";
+            }
+            case "ж", "женский", "f", "female" -> {
+                return  "Ж";
+            }
+            default -> throw new IllegalArgumentException();
         }
     }
 
