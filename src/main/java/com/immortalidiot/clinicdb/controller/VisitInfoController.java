@@ -63,7 +63,32 @@ public class VisitInfoController {
 
     @FXML
     protected void search() {
-        //TODO: implement sending request
+        String text = visitInfoTextField.getText();
+        if (text.isBlank()) {
+            List<DataField> data = databaseService.getVisitInfo();
+            error.setText("");
+            TableWriter.write(visitInfoCardTableView, data);
+        } else {
+            String dayOfWeek;
+            switch (text.toLowerCase()) {
+                case "понедельник", "пн", "mon", "monday" -> dayOfWeek = "MON";
+                case "вторник", "вт", "tue", "tuesday" -> dayOfWeek = "TUE";
+                case "среда", "ср", "wed", "wednesday" -> dayOfWeek = "WED";
+                case "пятница", "пт", "fri", "friday" -> dayOfWeek = "FRI";
+                case "суббота", "сб", "sat", "saturday" -> dayOfWeek = "SAT";
+                case "воскресенье", "вс", "sun", "sunday" -> dayOfWeek = "SUN";
+                default -> dayOfWeek = "Неизвестный день недели";
+            }
+
+            if (!dayOfWeek.equals("Неизвестный день недели")) {
+                List<DataField> data = databaseService.getVisitInfoByDayOfWeek(dayOfWeek);
+                error.setText("");
+                TableWriter.write(visitInfoCardTableView, data);
+            } else {
+                error.setText(dayOfWeek);
+            }
+
+        }
     }
 
     @FXML
