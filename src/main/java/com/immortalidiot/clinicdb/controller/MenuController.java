@@ -58,6 +58,11 @@ public class MenuController {
     }
 
     @FXML
+    protected void moveToEditAge(ActionEvent event) throws IOException {
+        moveToScreen(event, "edit-age.fxml");
+    }
+
+    @FXML
     protected void moveToScreen(ActionEvent event, String resource) throws IOException {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;
