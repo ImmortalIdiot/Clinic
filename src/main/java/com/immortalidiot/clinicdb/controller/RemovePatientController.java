@@ -2,8 +2,11 @@ package com.immortalidiot.clinicdb.controller;
 
 import com.immortalidiot.clinicdb.HelloApplication;
 import com.immortalidiot.clinicdb.JDBCRunner;
+import com.immortalidiot.clinicdb.entity.MedicalCard;
+import com.immortalidiot.clinicdb.entity.Patient;
 import com.immortalidiot.clinicdb.model.DataField;
 import com.immortalidiot.clinicdb.service.DatabaseService;
+import com.immortalidiot.clinicdb.writer.TableWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -66,14 +71,62 @@ public class RemovePatientController {
         Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
         Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
 
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
 
     }
 
     @FXML
     protected void removeAndShow() {
-        //TODO: implement sending request
+        String surname = patientSurnameTextField.getText();
+        String name = patientNameTextField.getText();
+        String patronymic = patientPatronymicTextField.getText();
+
+        try {
+            validateInputFields(surname, name, patronymic);
+
+            removePatient(surname, name, patronymic);
+            List<DataField> data = databaseService.getPatients();
+            error.setText("");
+            TableWriter.write(removePatientTableView, data);
+        } catch (IllegalArgumentException e) {
+            error.setText(e.getMessage());
+        }
+    }
+
+    private void validateInputFields(String surname, String name, String patronymic) {
+        if (surname.isBlank()) throw new IllegalArgumentException("Поле с фамилией не может быть пустым!");
+        if (name.isBlank()) throw new IllegalArgumentException("Поле с именем не может быть пустым!");
+        if (patronymic.isBlank()) throw new IllegalArgumentException("Поле с отчеством не может быть пустым!");
+    }
+
+    private void removePatient(String surname, String name, String patronymic) {
+        SessionFactory sessionFactory = JDBCRunner.SESSION_FACTORY;
+
+        sessionFactory.inTransaction(session -> {
+
+            try {
+                String hqlSelectPatient = "FROM patients WHERE surname = :surname AND name = :name AND patronymic = :patronymic";
+                Patient patient = session.createQuery(hqlSelectPatient, Patient.class)
+                        .setParameter("surname", surname)
+                        .setParameter("name", name)
+                        .setParameter("patronymic", patronymic)
+                        .uniqueResult();
+                if (patient == null) throw new NullPointerException();
+
+                String hqlSelectMedicalCard = "FROM medical_cards WHERE patients.patientId = :patientId";
+                MedicalCard medicalCard = session.createQuery(hqlSelectMedicalCard, MedicalCard.class)
+                        .setParameter("patientId", patient.patientId)
+                        .uniqueResult();
+
+                if (medicalCard == null) throw new NullPointerException();
+
+                session.remove(medicalCard);
+                session.remove(patient);
+            } catch (IllegalArgumentException e) {
+                error.setText("Такой пациент с мед картой не найден");
+            }
+        });
     }
 
     @FXML
