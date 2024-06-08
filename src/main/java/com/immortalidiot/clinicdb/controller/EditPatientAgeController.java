@@ -2,8 +2,10 @@ package com.immortalidiot.clinicdb.controller;
 
 import com.immortalidiot.clinicdb.HelloApplication;
 import com.immortalidiot.clinicdb.JDBCRunner;
+import com.immortalidiot.clinicdb.entity.Patient;
 import com.immortalidiot.clinicdb.model.DataField;
 import com.immortalidiot.clinicdb.service.DatabaseService;
+import com.immortalidiot.clinicdb.writer.TableWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -67,7 +71,56 @@ public class EditPatientAgeController {
 
     @FXML
     protected void editAndShow() {
-        //TODO: implement sending request
+        String textId = patientIdTextField.getText();
+        String age = newAgeTextField.getText();
+
+        try {
+            validateInputFields(textId, age);
+            int parsedId = validateId(textId);
+            int parsedAge = validateAge(age);
+
+            editPatientAge(parsedId, parsedAge);
+            List<DataField> data = databaseService.getPatients();
+            error.setText("");
+            TableWriter.write(correctAgeTableView, data);
+
+        } catch (IllegalArgumentException e) {
+            error.setText(e.getMessage());
+        }
+    }
+
+    private void validateInputFields(String id, String age) {
+        if (id.isBlank()) throw new IllegalArgumentException("Поле с номером пациента не должно быть пустым!");
+        if (age.isBlank()) throw new IllegalArgumentException("Поле с возрастом не должно быть пустым!");
+    }
+
+    private Integer validateId(String id) {
+        try {
+            return Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Номер пациента должен быть натуральным числом");
+        }
+    }
+
+    private int validateAge(String age) {
+        try {
+            int parsedAge = Integer.parseInt(age);
+            if (parsedAge <= 0) {
+                throw new IllegalArgumentException("Возраст должен быть натуральным числом!");
+            }
+            return parsedAge;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Возраст должен быть числом!");
+        }
+    }
+
+    private void editPatientAge(Integer id, Integer newAge) {
+        SessionFactory sessionFactory = JDBCRunner.SESSION_FACTORY;
+        sessionFactory.inTransaction(session -> {
+            Patient patient = session.get(Patient.class, id);
+            patient.age = newAge;
+            session.persist(patient);
+        });
     }
 
     @FXML
