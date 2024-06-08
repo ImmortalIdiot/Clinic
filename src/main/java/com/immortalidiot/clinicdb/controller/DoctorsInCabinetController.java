@@ -45,12 +45,13 @@ public class DoctorsInCabinetController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
-
     }
 
     @FXML
@@ -80,12 +81,20 @@ public class DoctorsInCabinetController {
 
     @FXML
     void initialize() {
-        assert doctorInCabinetBackButton != null : "fx:id=\"doctorInCabinetBackButton\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
-        assert doctorInCabinetTextField != null : "fx:id=\"doctorInCabinetTextField\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
-        assert doctorInCabinetLabel != null : "fx:id=\"doctorInCabinetLabel\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
-        assert doctorInCabinetSearchButton != null : "fx:id=\"doctorInCabinetSearchButton\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
-        assert doctorInCabinetTableView != null : "fx:id=\"doctorInCabinetTableView\" was not injected: check your FXML file 'doctors-in-cabinet.fxml'.";
-
+        assert doctorInCabinetBackButton != null :
+                "fx:id=\"doctorInCabinetBackButton\" was not injected: check your FXML file " +
+                        "'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetTextField != null :
+                "fx:id=\"doctorInCabinetTextField\" was not injected: check your FXML file " +
+                        "'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetLabel != null :
+                "fx:id=\"doctorInCabinetLabel\" was not injected: check your FXML file " +
+                        "'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetSearchButton != null :
+                "fx:id=\"doctorInCabinetSearchButton\" was not injected: check your FXML file " +
+                        "'doctors-in-cabinet.fxml'.";
+        assert doctorInCabinetTableView != null :
+                "fx:id=\"doctorInCabinetTableView\" was not injected: check your FXML file " +
+                        "'doctors-in-cabinet.fxml'.";
     }
-
 }

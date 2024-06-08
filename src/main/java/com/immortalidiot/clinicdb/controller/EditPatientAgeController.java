@@ -53,12 +53,13 @@ public class EditPatientAgeController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
-
     }
 
     @FXML
@@ -117,12 +118,19 @@ public class EditPatientAgeController {
 
     @FXML
     void initialize() {
-        assert correctPatientAgeBackButton != null : "fx:id=\"correctPatientAgeBackButton\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert patientIdTextField != null : "fx:id=\"patientIdTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert newAgeTextField != null : "fx:id=\"newAgeTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert patientIdLabel != null : "fx:id=\"patientIdLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert newAgeLabel != null : "fx:id=\"newAgeLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert findAndReplaceButton != null : "fx:id=\"findAndReplaceButton\" was not injected: check your FXML file 'edit-age.fxml'.";
-        assert correctAgeTableView != null : "fx:id=\"correctAgeTableView\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert correctPatientAgeBackButton != null :
+                "fx:id=\"correctPatientAgeBackButton\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert patientIdTextField != null :
+                "fx:id=\"patientIdTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert newAgeTextField != null :
+                "fx:id=\"newAgeTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert patientIdLabel != null :
+                "fx:id=\"patientIdLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert newAgeLabel != null :
+                "fx:id=\"newAgeLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert findAndReplaceButton != null :
+                "fx:id=\"findAndReplaceButton\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert correctAgeTableView != null :
+                "fx:id=\"correctAgeTableView\" was not injected: check your FXML file 'edit-age.fxml'.";
     }
 }

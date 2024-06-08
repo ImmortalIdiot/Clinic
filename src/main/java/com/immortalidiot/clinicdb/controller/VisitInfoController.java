@@ -45,17 +45,19 @@ public class VisitInfoController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
-
     }
 
     @FXML
     protected void search() {
         String dayOfWeek = visitInfoTextField.getText();
+
         if (dayOfWeek.isBlank()) {
             List<DataField> data = databaseService.getVisitInfo();
             error.setText("");
@@ -67,7 +69,6 @@ public class VisitInfoController {
                 List<DataField> data = databaseService.getVisitInfoByDayOfWeek(dayOfWeek);
                 error.setText("");
                 TableWriter.write(visitInfoCardTableView, data);
-
             } catch (IllegalArgumentException e) {
                 error.setText("Неверный формат дня недели");
             }
@@ -100,10 +101,15 @@ public class VisitInfoController {
 
     @FXML
     void initialize() {
-        assert visitInfoBackButton != null : "fx:id=\"visitInfoBackButton\" was not injected: check your FXML file 'visit-info.fxml'.";
-        assert visitInfoTextField != null : "fx:id=\"visitInfoTextField\" was not injected: check your FXML file 'visit-info.fxml'.";
-        assert visitInfoCardLabel != null : "fx:id=\"visitInfoCardLabel\" was not injected: check your FXML file 'visit-info.fxml'.";
-        assert visitInfoSearchButton != null : "fx:id=\"visitInfoSearchButton\" was not injected: check your FXML file 'visit-info.fxml'.";
-        assert visitInfoCardTableView != null : "fx:id=\"visitInfoCardTableView\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoBackButton != null :
+                "fx:id=\"visitInfoBackButton\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoTextField != null :
+                "fx:id=\"visitInfoTextField\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoCardLabel != null :
+                "fx:id=\"visitInfoCardLabel\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoSearchButton != null :
+                "fx:id=\"visitInfoSearchButton\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoCardTableView != null :
+                "fx:id=\"visitInfoCardTableView\" was not injected: check your FXML file 'visit-info.fxml'.";
     }
 }

@@ -78,9 +78,11 @@ public class AddPatientController {
 
     @FXML
     void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
     }
@@ -186,20 +188,35 @@ public class AddPatientController {
 
     @FXML
     void initialize() {
-        assert addPatientBackButton != null : "fx:id=\"addPatientBackButton\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert surnameTextField != null : "fx:id=\"surnameTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert patronymicTextField != null : "fx:id=\"patronymicTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert ageTextField != null : "fx:id=\"ageTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert genderTextField != null : "fx:id=\"genderTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert surnameLabel != null : "fx:id=\"surnameLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert patronymicLabel != null : "fx:id=\"patronymicLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert ageLabel != null : "fx:id=\"ageLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert genderLabel != null : "fx:id=\"genderLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert phoneNumberLabel != null : "fx:id=\"phoneNumberLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert addPatientSearchButton != null : "fx:id=\"addPatientSearchButton\" was not injected: check your FXML file 'add_patient.fxml'.";
-        assert addPatientTableView != null : "fx:id=\"addPatientTableView\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert addPatientBackButton != null :
+                "fx:id=\"addPatientBackButton\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert surnameTextField != null :
+                "fx:id=\"surnameTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert nameTextField != null :
+                "fx:id=\"nameTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert patronymicTextField != null :
+                "fx:id=\"patronymicTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert ageTextField != null :
+                "fx:id=\"ageTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert genderTextField != null :
+                "fx:id=\"genderTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert phoneNumberTextField != null :
+                "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert surnameLabel != null :
+                "fx:id=\"surnameLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert nameLabel != null :
+                "fx:id=\"nameLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert patronymicLabel != null :
+                "fx:id=\"patronymicLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert ageLabel != null :
+                "fx:id=\"ageLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert genderLabel != null :
+                "fx:id=\"genderLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert phoneNumberLabel != null :
+                "fx:id=\"phoneNumberLabel\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert addPatientSearchButton != null :
+                "fx:id=\"addPatientSearchButton\" was not injected: check your FXML file 'add_patient.fxml'.";
+        assert addPatientTableView != null :
+                "fx:id=\"addPatientTableView\" was not injected: check your FXML file 'add_patient.fxml'.";
     }
 }

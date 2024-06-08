@@ -44,12 +44,13 @@ public class MondayWorkerController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
-
     }
 
     @FXML
@@ -82,10 +83,15 @@ public class MondayWorkerController {
 
     @FXML
     void initialize() {
-        assert mondayWorkerBackButton != null : "fx:id=\"mondayWorkerBackButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
-        assert mondayWorkerField != null : "fx:id=\"mondayWorkerField\" was not injected: check your FXML file 'mon-worker.fxml'.";
-        assert mondayWorkerLabel != null : "fx:id=\"mondayWorkerLabel\" was not injected: check your FXML file 'mon-worker.fxml'.";
-        assert mondayWorkerSearchButton != null : "fx:id=\"mondayWorkerSearchButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
-        assert mondayWorkerTableView != null : "fx:id=\"mondayWorkerTableView\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerBackButton != null :
+                "fx:id=\"mondayWorkerBackButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerField != null :
+                "fx:id=\"mondayWorkerField\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerLabel != null :
+                "fx:id=\"mondayWorkerLabel\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerSearchButton != null :
+                "fx:id=\"mondayWorkerSearchButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerTableView != null :
+                "fx:id=\"mondayWorkerTableView\" was not injected: check your FXML file 'mon-worker.fxml'.";
     }
 }

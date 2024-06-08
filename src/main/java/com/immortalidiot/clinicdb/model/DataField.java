@@ -9,13 +9,9 @@ import java.util.stream.Collectors;
 public class DataField {
     private List<Pair<String, SimpleStringProperty>> data;
 
-    public DataField(List<Pair<String, String>> data) {
-        setData(data);
-    }
+    public DataField(List<Pair<String, String>> data) { setData(data); }
 
-    public List<Pair<String, SimpleStringProperty>> getData() {
-        return data;
-    }
+    public List<Pair<String, SimpleStringProperty>> getData() { return data; }
 
     public void setData(List<Pair<String, String>> data) {
         this.data = data.stream()

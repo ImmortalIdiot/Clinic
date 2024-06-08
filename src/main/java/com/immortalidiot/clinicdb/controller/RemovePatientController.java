@@ -60,12 +60,13 @@ public class RemovePatientController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
-
     }
 
     @FXML
@@ -98,15 +99,20 @@ public class RemovePatientController {
         sessionFactory.inTransaction(session -> {
 
             try {
-                String hqlSelectPatient = "FROM patients WHERE surname = :surname AND name = :name AND patronymic = :patronymic";
+                String hqlSelectPatient =
+                        "FROM patients WHERE surname = :surname AND name = :name AND patronymic = :patronymic";
+
                 Patient patient = session.createQuery(hqlSelectPatient, Patient.class)
                         .setParameter("surname", surname)
                         .setParameter("name", name)
                         .setParameter("patronymic", patronymic)
                         .uniqueResult();
+
                 if (patient == null) throw new NullPointerException();
 
-                String hqlSelectMedicalCard = "FROM medical_cards WHERE patients.patientId = :patientId";
+                String hqlSelectMedicalCard =
+                        "FROM medical_cards WHERE patients.patientId = :patientId";
+
                 MedicalCard medicalCard = session.createQuery(hqlSelectMedicalCard, MedicalCard.class)
                         .setParameter("patientId", patient.patientId)
                         .uniqueResult();
@@ -123,14 +129,23 @@ public class RemovePatientController {
 
     @FXML
     void initialize() {
-        assert removePatientAgeBackButton != null : "fx:id=\"removePatientAgeBackButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientSurnameTextField != null : "fx:id=\"patientSurnameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientNameTextField != null : "fx:id=\"patientNameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientPatronymicTextField != null : "fx:id=\"patientPatronymicTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientSurnameLabel != null : "fx:id=\"patientSurnameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientNameLabel != null : "fx:id=\"patientNameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert patientPatronymicLabel != null : "fx:id=\"patientPatronymicLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert findAndRemoveButton != null : "fx:id=\"findAndRemoveButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
-        assert removePatientTableView != null : "fx:id=\"removePatientTableView\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert removePatientAgeBackButton != null :
+                "fx:id=\"removePatientAgeBackButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientSurnameTextField != null :
+                "fx:id=\"patientSurnameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientNameTextField != null :
+                "fx:id=\"patientNameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientPatronymicTextField != null :
+                "fx:id=\"patientPatronymicTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientSurnameLabel != null :
+                "fx:id=\"patientSurnameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientNameLabel != null :
+                "fx:id=\"patientNameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientPatronymicLabel != null :
+                "fx:id=\"patientPatronymicLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert findAndRemoveButton != null :
+                "fx:id=\"findAndRemoveButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert removePatientTableView != null :
+                "fx:id=\"removePatientTableView\" was not injected: check your FXML file 'remove-patient.fxml'.";
     }
 }

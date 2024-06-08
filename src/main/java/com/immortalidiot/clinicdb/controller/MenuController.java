@@ -40,18 +40,6 @@ public class MenuController {
     private Button removePatient;
 
     @FXML
-    void initialize() {
-        assert patientSearcher != null : "fx:id=\"patientSearcher\" was not injected: check your FXML file 'menu.fxml'.";
-        assert mondayTherapist != null : "fx:id=\"mondayTherapist\" was not injected: check your FXML file 'menu.fxml'.";
-        assert doctorsInCabinets != null : "fx:id=\"doctorsInCabinets\" was not injected: check your FXML file 'menu.fxml'.";
-        assert digitalCopyCard != null : "fx:id=\"digitalCopyCard\" was not injected: check your FXML file 'menu.fxml'.";
-        assert visitInfo != null : "fx:id=\"visitInfo\" was not injected: check your FXML file 'menu.fxml'.";
-        assert addPatient != null : "fx:id=\"addPatient\" was not injected: check your FXML file 'menu.fxml'.";
-        assert editAge != null : "fx:id=\"editAge\" was not injected: check your FXML file 'menu.fxml'.";
-        assert removePatient != null : "fx:id=\"removePatient\" was not injected: check your FXML file 'menu.fxml'.";
-    }
-
-    @FXML
     protected void moveToPatientSearcher(ActionEvent event) throws IOException {
         moveToScreen(event, "patient-searcher.fxml");
     }
@@ -96,11 +84,32 @@ public class MenuController {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;
 
-        Parent view = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(resource)));
+        Parent view = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource(resource))
+        );
+
         Scene viewScene = new Scene(view, 1024, 720);
-
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(viewScene);
+    }
+
+    @FXML
+    void initialize() {
+        assert patientSearcher != null :
+                "fx:id=\"patientSearcher\" was not injected: check your FXML file 'menu.fxml'.";
+        assert mondayTherapist != null :
+                "fx:id=\"mondayTherapist\" was not injected: check your FXML file 'menu.fxml'.";
+        assert doctorsInCabinets != null :
+                "fx:id=\"doctorsInCabinets\" was not injected: check your FXML file 'menu.fxml'.";
+        assert digitalCopyCard != null :
+                "fx:id=\"digitalCopyCard\" was not injected: check your FXML file 'menu.fxml'.";
+        assert visitInfo != null :
+                "fx:id=\"visitInfo\" was not injected: check your FXML file 'menu.fxml'.";
+        assert addPatient != null :
+                "fx:id=\"addPatient\" was not injected: check your FXML file 'menu.fxml'.";
+        assert editAge != null :
+                "fx:id=\"editAge\" was not injected: check your FXML file 'menu.fxml'.";
+        assert removePatient != null :
+                "fx:id=\"removePatient\" was not injected: check your FXML file 'menu.fxml'.";
     }
 }

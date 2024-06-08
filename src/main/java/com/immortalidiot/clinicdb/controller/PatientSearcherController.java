@@ -46,9 +46,11 @@ public class PatientSearcherController {
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
-        Parent firstTableView = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml")));
-        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
+        Parent firstTableView = FXMLLoader.load(
+                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+        );
 
+        Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(firstTableViewScene);
     }
@@ -88,10 +90,20 @@ public class PatientSearcherController {
 
     @FXML
     void initialize() {
-        assert patientSearcherBackButton != null : "fx:id=\"patientSearcherBackButton\" was not injected: check your FXML file 'patient-searcher.fxml'.";
-        assert patientSearcherLabel != null : "fx:id=\"patientSearcherLabel\" was not injected: check your FXML file 'patient-searcher.fxml'.";
-        assert patientSearcherTextField != null : "fx:id=\"patientSearcherTextField\" was not injected: check your FXML file 'patient-searcher.fxml'.";
-        assert patientSearcherSearchButton != null : "fx:id=\"patientSearcherSearchButton\" was not injected: check your FXML file 'patient-searcher.fxml'.";
-        assert patientSearcherTableView != null : "fx:id=\"patientSearcherTableView\" was not injected: check your FXML file 'patient-searcher.fxml'.";
+        assert patientSearcherBackButton != null :
+                "fx:id=\"patientSearcherBackButton\" was not injected: check your FXML file " +
+                        "'patient-searcher.fxml'.";
+        assert patientSearcherLabel != null :
+                "fx:id=\"patientSearcherLabel\" was not injected: check your FXML file " +
+                        "'patient-searcher.fxml'.";
+        assert patientSearcherTextField != null :
+                "fx:id=\"patientSearcherTextField\" was not injected: check your FXML file " +
+                        "'patient-searcher.fxml'.";
+        assert patientSearcherSearchButton != null :
+                "fx:id=\"patientSearcherSearchButton\" was not injected: check your FXML file " +
+                        "'patient-searcher.fxml'.";
+        assert patientSearcherTableView != null :
+                "fx:id=\"patientSearcherTableView\" was not injected: check your FXML file " +
+                        "'patient-searcher.fxml'.";
     }
 }
