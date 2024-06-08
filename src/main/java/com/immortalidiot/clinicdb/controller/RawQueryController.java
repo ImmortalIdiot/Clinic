@@ -73,10 +73,15 @@ public class RawQueryController {
 
     @FXML
     void initialize() {
-        assert rawQueryBackButton != null : "fx:id=\"rawQueryBackButton\" was not injected: check your FXML file 'raw-query.fxml'.";
-        assert rawQueryLabel != null : "fx:id=\"rawQueryLabel\" was not injected: check your FXML file 'raw-query.fxml'.";
-        assert rawQueryTextField != null : "fx:id=\"rawQueryTextField\" was not injected: check your FXML file 'raw-query.fxml'.";
-        assert rawQueryExecuteButton != null : "fx:id=\"rawQueryExecuteButton\" was not injected: check your FXML file 'raw-query.fxml'.";
-        assert rawQueryTableView != null : "fx:id=\"rawQueryTableView\" was not injected: check your FXML file 'raw-query.fxml'.";
+        assert rawQueryBackButton != null :
+                "fx:id=\"rawQueryBackButton\" was not injected: check your FXML file 'raw-query.fxml'.";
+        assert rawQueryLabel != null :
+                "fx:id=\"rawQueryLabel\" was not injected: check your FXML file 'raw-query.fxml'.";
+        assert rawQueryTextField != null :
+                "fx:id=\"rawQueryTextField\" was not injected: check your FXML file 'raw-query.fxml'.";
+        assert rawQueryExecuteButton != null :
+                "fx:id=\"rawQueryExecuteButton\" was not injected: check your FXML file 'raw-query.fxml'.";
+        assert rawQueryTableView != null :
+                "fx:id=\"rawQueryTableView\" was not injected: check your FXML file 'raw-query.fxml'.";
     }
 }
