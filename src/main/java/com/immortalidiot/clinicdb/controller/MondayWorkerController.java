@@ -62,23 +62,30 @@ public class MondayWorkerController {
             error.setText("");
             TableWriter.write(mondayWorkerTableView, data);
         } else {
-            String specialization = text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
-            List<String> specializations = new ArrayList<>(Arrays.asList(
-                    "Терапевт",
-                    "Офтальмолог",
-                    "Кастро-интеролог",
-                    "Кардиолог",
-                    "Акушер-гинеколог"
-            ));
+            try {
+                String specialization = validateSpecialization(text);
 
-            if (specializations.contains(specialization)) {
                 List<DataField> data = databaseService.getMondayWorkers(specialization);
                 error.setText("");
                 TableWriter.write(mondayWorkerTableView, data);
-            } else {
-                error.setText("Неизвестная специальность");
+            } catch (IllegalArgumentException e) {
+                error.setText("Такой профессии не существует!");
             }
         }
+    }
+
+    private String validateSpecialization(String specialization) {
+        List<String> specializations = new ArrayList<>(Arrays.asList(
+                "терапевт",
+                "офтальмолог",
+                "кастро-интеролог",
+                "кардиолог",
+                "акушер-гинеколог"
+        ));
+
+        if (specializations.contains(specialization.toLowerCase())) {
+            return specialization.substring(0, 1).toUpperCase() + specialization.substring(1).toLowerCase();
+        } else { throw new IllegalArgumentException();}
     }
 
     @FXML
