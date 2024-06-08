@@ -44,6 +44,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="remove_patient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToRemovePatient" prefHeight="25.0" prefWidth="255.0" text="Удалить пациента по ФИО">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </content>
