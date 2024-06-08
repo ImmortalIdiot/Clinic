@@ -21,20 +21,12 @@ import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class AddPatientController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button addPatientBackButton;
