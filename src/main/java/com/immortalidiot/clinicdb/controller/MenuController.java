@@ -40,6 +40,9 @@ public class MenuController {
     private Button removePatient;
 
     @FXML
+    private Button rawQuery;
+
+    @FXML
     protected void moveToPatientSearcher(ActionEvent event) throws IOException {
         moveToScreen(event, "patient-searcher.fxml");
     }
@@ -80,6 +83,11 @@ public class MenuController {
     }
 
     @FXML
+    protected void moveToRawQuery(ActionEvent event) throws IOException {
+        moveToScreen(event, "raw-query.fxml");
+    }
+
+    @FXML
     protected void moveToScreen(ActionEvent event, String resource) throws IOException {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;
@@ -111,5 +119,7 @@ public class MenuController {
                 "fx:id=\"editAge\" was not injected: check your FXML file 'menu.fxml'.";
         assert removePatient != null :
                 "fx:id=\"removePatient\" was not injected: check your FXML file 'menu.fxml'.";
+        assert rawQuery != null :
+                "fx:id=\"rawQuery\" was not injected: check your FXML file 'menu.fxml'.";
     }
 }

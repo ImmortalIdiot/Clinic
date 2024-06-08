@@ -49,6 +49,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="rawQuery" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToRawQuery" prefHeight="25.0" prefWidth="255.0" text="SQL запрос">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </content>
