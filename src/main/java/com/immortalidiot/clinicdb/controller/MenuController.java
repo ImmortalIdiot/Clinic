@@ -48,6 +48,11 @@ public class MenuController {
     }
 
     @FXML
+    protected void moveToVisitInfo(ActionEvent event) throws IOException {
+        moveToScreen(event, "visit-info.fxml");
+    }
+
+    @FXML
     protected void moveToScreen(ActionEvent event, String resource) throws IOException {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;
