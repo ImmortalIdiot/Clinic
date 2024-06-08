@@ -18,20 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class VisitInfoController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button visitInfoBackButton;
@@ -108,10 +100,10 @@ public class VisitInfoController {
 
     @FXML
     void initialize() {
-        assert visitInfoBackButton != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert visitInfoTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert visitInfoCardLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert visitInfoSearchButton != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert visitInfoCardTableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert visitInfoBackButton != null : "fx:id=\"visitInfoBackButton\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoTextField != null : "fx:id=\"visitInfoTextField\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoCardLabel != null : "fx:id=\"visitInfoCardLabel\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoSearchButton != null : "fx:id=\"visitInfoSearchButton\" was not injected: check your FXML file 'visit-info.fxml'.";
+        assert visitInfoCardTableView != null : "fx:id=\"visitInfoCardTableView\" was not injected: check your FXML file 'visit-info.fxml'.";
     }
 }
