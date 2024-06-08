@@ -134,7 +134,7 @@ public class DatabaseService {
                 "d.surname AS \"Фамилия врача\", " +
                 "d.specialization AS \"Специальность\", " +
                 "v.full_time_visit AS \"Время посещения\", " +
-                "s.day_of_week AS \"День недели\", " +
+                "s.day_of_week AS \"День недели\" " +
                 "FROM patients p " +
                 "JOIN medical_cards mc ON p.patient_id = mc.patient_id " +
                 "JOIN visit v ON mc.card_id = v.patient_card_id " +
@@ -151,7 +151,7 @@ public class DatabaseService {
                 "p.phone_number AS \"Номер телефона\", " +
                 "d.surname AS \"Фамилия врача\", " +
                 "d.specialization AS \"Специальность\", " +
-                "v.full_time_visit AS \"Время посещения\"" +
+                "v.full_time_visit AS \"Время посещения\" " +
                 "FROM patients p " +
                 "JOIN medical_cards mc ON p.patient_id = mc.patient_id " +
                 "JOIN visit v ON mc.card_id = v.patient_card_id " +
