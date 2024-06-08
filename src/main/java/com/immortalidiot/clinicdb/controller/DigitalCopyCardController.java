@@ -62,15 +62,28 @@ public class DigitalCopyCardController {
             error.setText("");
             TableWriter.write(digitalCopyCardTableView, data);
         } else {
-            boolean isDigitalCopy;
-            switch (text.toLowerCase()) {
-                case "да", "true", "правда", "t", "yes", "y", "п" ->  isDigitalCopy = true;
-                default -> isDigitalCopy = false;
-            }
+            try {
+                validateDigitalCopyCardText(text);
+                isDigitalCopyCard(text);
 
-            List<DataField> data = databaseService.getPatientsWithDigitalTypeCards(isDigitalCopy);
-            error.setText("");
-            TableWriter.write(digitalCopyCardTableView, data);
+                List<DataField> data = databaseService.getPatientsWithDigitalTypeCards(Boolean.parseBoolean(text));
+                error.setText("");
+                TableWriter.write(digitalCopyCardTableView, data);
+            } catch (IllegalArgumentException e) {
+                error.setText(e.getMessage());
+            }
+        }
+    }
+
+    private void validateDigitalCopyCardText(String text) {
+        Boolean.parseBoolean(text);
+    }
+
+    private boolean isDigitalCopyCard(String text) {
+        switch (text.toLowerCase()) {
+            case "да", "true", "правда", "t", "yes", "y", "п" -> { return true; }
+            case "нет", "false", "ложь", "f", "no", "n", "л" -> { return false; }
+            default -> throw new IllegalArgumentException("Неверный формат наличия карты");
         }
     }
 
