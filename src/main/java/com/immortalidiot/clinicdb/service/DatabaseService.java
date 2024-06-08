@@ -126,6 +126,43 @@ public class DatabaseService {
         );
     }
 
+    public List<DataField> getVisitInfo() {
+        return getResponse(
+                "SELECT p.patient_id AS \"Номер пациента\", " +
+                "p.surname AS \"Фамилия пациента\", " +
+                "p.phone_number AS \"Номер телефона\", " +
+                "d.surname AS \"Фамилия врача\", " +
+                "d.specialization AS \"Специальность\", " +
+                "v.full_time_visit AS \"Время посещения\", " +
+                "s.day_of_week AS \"День недели\", " +
+                "FROM patients p " +
+                "JOIN medical_cards mc ON p.patient_id = mc.patient_id " +
+                "JOIN visit v ON mc.card_id = v.patient_card_id " +
+                "JOIN doctors d ON v.doctor_id = d.doctor_id " +
+                "JOIN schedule s ON d.doctor_id = s.doctor_id " +
+                "ORDER BY p.patient_id;"
+        );
+    }
+
+    public List<DataField> getVisitInfoByDayOfWeek(String dayOfWeek) {
+        return getResponse(
+                "SELECT p.patient_id AS \"Номер пациента\", " +
+                "p.surname AS \"Фамилия пациента\", " +
+                "p.phone_number AS \"Номер телефона\", " +
+                "d.surname AS \"Фамилия врача\", " +
+                "d.specialization AS \"Специальность\", " +
+                "v.full_time_visit AS \"Время посещения\"" +
+                "FROM patients p " +
+                "JOIN medical_cards mc ON p.patient_id = mc.patient_id " +
+                "JOIN visit v ON mc.card_id = v.patient_card_id " +
+                "JOIN doctors d ON v.doctor_id = d.doctor_id " +
+                "JOIN schedule s ON d.doctor_id = s.doctor_id " +
+                "WHERE s.day_of_week = :param " +
+                "ORDER BY p.patient_id;",
+          dayOfWeek
+        );
+    }
+
     private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request);
