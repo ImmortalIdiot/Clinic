@@ -71,13 +71,19 @@ public class DoctorsInCabinetController {
             TableWriter.write(tableView, data);
         } else {
             try {
+                correctCabinetNumber(text);
+
                 List<DataField> data = databaseService.getDoctorSpecializationsInCabinet(Integer.parseInt(text));
                 error.setText("");
                 TableWriter.write(tableView, data);
-            } catch (NumberFormatException e) {
-                error.setText(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                error.setText("Неверный формат кабинета!");
             }
         }
+    }
+
+    private void correctCabinetNumber(String cabinet) {
+        if (Integer.parseInt(cabinet) <= 0) throw new IllegalArgumentException();
     }
 
     @FXML
