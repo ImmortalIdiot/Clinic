@@ -94,7 +94,7 @@ public class AddPatientController {
     }
 
     @FXML
-    void search() {
+    void addAndGetAllPatients() {
         String surname = surnameTextField.getText();
         String name = nameTextField.getText();
         String patronymic = patronymicTextField.getText();

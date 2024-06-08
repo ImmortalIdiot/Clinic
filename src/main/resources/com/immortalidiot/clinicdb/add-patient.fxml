@@ -92,7 +92,7 @@
                         </Label>
                         <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="598.0">
                             <children>
-                                <Button fx:id="addPatientSearchButton" mnemonicParsing="false" onAction="#search" text="Поиск">
+                                <Button fx:id="addPatientSearchButton" mnemonicParsing="false" onAction="#addAndGetAllPatients" text="Поиск">
                                     <HBox.margin>
                                         <Insets bottom="10.0" />
                                     </HBox.margin>
