@@ -11,6 +11,7 @@ module com.immortalidiot.clinicdb {
     requires com.fasterxml.classmate;
     requires net.bytebuddy;
     requires java.naming;
+    requires org.postgresql.jdbc;
 
     opens com.immortalidiot.clinicdb to javafx.fxml;
     opens com.immortalidiot.clinicdb.controller to javafx.fxml;
