@@ -53,6 +53,11 @@ public class MenuController {
     }
 
     @FXML
+    protected void moveToAddPatient(ActionEvent event) throws IOException {
+        moveToScreen(event, "add-patient.fxml");
+    }
+
+    @FXML
     protected void moveToScreen(ActionEvent event, String resource) throws IOException {
         if (resource.isEmpty()) return;
         if (!resource.contains(".fxml")) return;

@@ -34,6 +34,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="add_patient" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#moveToAddPatient" prefHeight="25.0" prefWidth="255.0" text="Добавить пациента">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </content>
