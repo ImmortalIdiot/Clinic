@@ -18,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 public class MondayWorkerController {
@@ -26,28 +25,22 @@ public class MondayWorkerController {
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
 
     @FXML
-    private ResourceBundle resources;
+    private Button mondayWorkerBackButton;
 
     @FXML
-    private URL location;
+    private TextField mondayWorkerField;
 
     @FXML
-    private Button First_table_back;
+    private Label mondayWorkerLabel;
 
     @FXML
-    private TextField field;
-
-    @FXML
-    private Label first_table_input_place_label;
-
-    @FXML
-    private Button first_table_search_button;
+    private Button mondayWorkerSearchButton;
 
     @FXML
     private Label error;
 
     @FXML
-    private TableView<DataField> tableView;
+    private TableView<DataField> mondayWorkerTableView;
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
@@ -61,18 +54,18 @@ public class MondayWorkerController {
 
     @FXML
     protected void search() {
-        String text = field.getText();
+        String text = mondayWorkerField.getText();
 
         if (text.isBlank()) {
             List<DataField> data = databaseService.getAllMondayWorkers();
             error.setText("");
-            TableWriter.write(tableView, data);
+            TableWriter.write(mondayWorkerTableView, data);
         } else {
             String specialization = text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
             List<String> specializations = new ArrayList<>(Arrays.asList(
                     "Терапевт",
                     "Офтальмолог",
-                    "Гастро-интеролог",
+                    "Кастро-интеролог",
                     "Кардиолог",
                     "Акушер-гинеколог"
             ));
@@ -80,7 +73,7 @@ public class MondayWorkerController {
             if (specializations.contains(specialization)) {
                 List<DataField> data = databaseService.getMondayWorkers(specialization);
                 error.setText("");
-                TableWriter.write(tableView, data);
+                TableWriter.write(mondayWorkerTableView, data);
             } else {
                 error.setText("Неизвестная специальность");
             }
@@ -89,10 +82,10 @@ public class MondayWorkerController {
 
     @FXML
     void initialize() {
-        assert First_table_back != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'second_table.fxml'.";
-        assert field != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'second_table.fxml'.";
-        assert first_table_input_place_label != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'second_table.fxml'.";
-        assert first_table_search_button != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'second_table.fxml'.";
-        assert tableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'second_table.fxml'.";
+        assert mondayWorkerBackButton != null : "fx:id=\"mondayWorkerBackButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerField != null : "fx:id=\"mondayWorkerField\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerLabel != null : "fx:id=\"mondayWorkerLabel\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerSearchButton != null : "fx:id=\"mondayWorkerSearchButton\" was not injected: check your FXML file 'mon-worker.fxml'.";
+        assert mondayWorkerTableView != null : "fx:id=\"mondayWorkerTableView\" was not injected: check your FXML file 'mon-worker.fxml'.";
     }
 }
