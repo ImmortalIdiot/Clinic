@@ -20,20 +20,12 @@ import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class EditPatientAgeController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button correctPatientAgeBackButton;
@@ -125,12 +117,12 @@ public class EditPatientAgeController {
 
     @FXML
     void initialize() {
-        assert correctPatientAgeBackButton != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientIdTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert newAgeTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientIdLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert newAgeLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert findAndReplaceButton != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert correctAgeTableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert correctPatientAgeBackButton != null : "fx:id=\"correctPatientAgeBackButton\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert patientIdTextField != null : "fx:id=\"patientIdTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert newAgeTextField != null : "fx:id=\"newAgeTextField\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert patientIdLabel != null : "fx:id=\"patientIdLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert newAgeLabel != null : "fx:id=\"newAgeLabel\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert findAndReplaceButton != null : "fx:id=\"findAndReplaceButton\" was not injected: check your FXML file 'edit-age.fxml'.";
+        assert correctAgeTableView != null : "fx:id=\"correctAgeTableView\" was not injected: check your FXML file 'edit-age.fxml'.";
     }
 }
