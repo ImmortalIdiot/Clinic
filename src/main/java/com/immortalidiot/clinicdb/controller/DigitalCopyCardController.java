@@ -18,20 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class DigitalCopyCardController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button digitalCopyCardBackButton;
