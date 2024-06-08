@@ -63,31 +63,46 @@ public class VisitInfoController {
 
     @FXML
     protected void search() {
-        String text = visitInfoTextField.getText();
-        if (text.isBlank()) {
+        String dayOfWeek = visitInfoTextField.getText();
+        if (dayOfWeek.isBlank()) {
             List<DataField> data = databaseService.getVisitInfo();
             error.setText("");
             TableWriter.write(visitInfoCardTableView, data);
         } else {
-            String dayOfWeek;
-            switch (text.toLowerCase()) {
-                case "понедельник", "пн", "mon", "monday" -> dayOfWeek = "MON";
-                case "вторник", "вт", "tue", "tuesday" -> dayOfWeek = "TUE";
-                case "среда", "ср", "wed", "wednesday" -> dayOfWeek = "WED";
-                case "пятница", "пт", "fri", "friday" -> dayOfWeek = "FRI";
-                case "суббота", "сб", "sat", "saturday" -> dayOfWeek = "SAT";
-                case "воскресенье", "вс", "sun", "sunday" -> dayOfWeek = "SUN";
-                default -> dayOfWeek = "Неизвестный день недели";
-            }
+            try {
+                dayOfWeek = validateDayOfWeek(dayOfWeek);
 
-            if (!dayOfWeek.equals("Неизвестный день недели")) {
                 List<DataField> data = databaseService.getVisitInfoByDayOfWeek(dayOfWeek);
                 error.setText("");
                 TableWriter.write(visitInfoCardTableView, data);
-            } else {
-                error.setText(dayOfWeek);
-            }
 
+            } catch (IllegalArgumentException e) {
+                error.setText("Неверный формат дня недели");
+            }
+        }
+    }
+
+    private String validateDayOfWeek(String dayOfWeek) {
+        switch (dayOfWeek.toLowerCase()) {
+            case "понедельник", "пн", "mon", "monday" -> {
+                return  "MON";
+            }
+            case "вторник", "вт", "tue", "tuesday" -> {
+                return  "TUE";
+            }
+            case "среда", "ср", "wed", "wednesday" -> {
+                return  "WED";
+            }
+            case "пятница", "пт", "fri", "friday" -> {
+                return  "FRI";
+            }
+            case "суббота", "сб", "sat", "saturday" -> {
+                return  "SAT";
+            }
+            case "воскресенье", "вс", "sun", "sunday" -> {
+                return  "SUN";
+            }
+            default -> throw new IllegalArgumentException();
         }
     }
 
