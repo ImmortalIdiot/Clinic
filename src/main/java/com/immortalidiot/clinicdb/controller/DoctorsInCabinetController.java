@@ -1,10 +1,8 @@
 package com.immortalidiot.clinicdb.controller;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import com.immortalidiot.clinicdb.HelloApplication;
 import com.immortalidiot.clinicdb.JDBCRunner;
@@ -28,28 +26,22 @@ public class DoctorsInCabinetController {
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
 
     @FXML
-    private ResourceBundle resources;
+    private Button doctorInCabinetBackButton;
 
     @FXML
-    private URL location;
+    private TextField doctorInCabinetTextField;
 
     @FXML
-    private Button First_table_back;
-
-    @FXML
-    private TextField textField;
-
-    @FXML
-    private Label first_table_input_place_label;
+    private Label doctorInCabinetLabel;
 
     @FXML
     private Label error;
 
     @FXML
-    private Button first_table_search_button;
+    private Button doctorInCabinetSearchButton;
 
     @FXML
-    private TableView<DataField> tableView;
+    private TableView<DataField> doctorInCabinetTableView;
 
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
@@ -63,19 +55,19 @@ public class DoctorsInCabinetController {
 
     @FXML
     protected void search() {
-        String text = textField.getText();
+        String text = doctorInCabinetTextField.getText();
 
         if (text.isBlank()) {
             List<DataField> data = databaseService.getDoctorSpecializationsAndCabinets();
             error.setText("");
-            TableWriter.write(tableView, data);
+            TableWriter.write(doctorInCabinetTableView, data);
         } else {
             try {
                 correctCabinetNumber(text);
 
                 List<DataField> data = databaseService.getDoctorSpecializationsInCabinet(Integer.parseInt(text));
                 error.setText("");
-                TableWriter.write(tableView, data);
+                TableWriter.write(doctorInCabinetTableView, data);
             } catch (IllegalArgumentException e) {
                 error.setText("Неверный формат кабинета!");
             }
@@ -88,11 +80,11 @@ public class DoctorsInCabinetController {
 
     @FXML
     void initialize() {
-        assert First_table_back != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert textField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert first_table_input_place_label != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert first_table_search_button != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert tableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetBackButton != null : "fx:id=\"doctorInCabinetBackButton\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetTextField != null : "fx:id=\"doctorInCabinetTextField\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetLabel != null : "fx:id=\"doctorInCabinetLabel\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetSearchButton != null : "fx:id=\"doctorInCabinetSearchButton\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert doctorInCabinetTableView != null : "fx:id=\"doctorInCabinetTableView\" was not injected: check your FXML file 'third_table.fxml'.";
 
     }
 
