@@ -65,7 +65,7 @@ public class RawQueryController {
             error.setText("");
             TableWriter.write(rawQueryTableView, data);
         } catch (IllegalArgumentException e) {
-            error.setText("Поле с запросом не должно быть пустым!");
+            error.setText("Неверный синтаксис запроса!");
         }
     }
 

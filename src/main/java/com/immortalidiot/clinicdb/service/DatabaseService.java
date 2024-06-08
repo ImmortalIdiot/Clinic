@@ -2,6 +2,7 @@ package com.immortalidiot.clinicdb.service;
 
 import com.immortalidiot.clinicdb.collector.PairCollector;
 import com.immortalidiot.clinicdb.model.DataField;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -166,7 +167,11 @@ public class DatabaseService {
     }
 
     public List<DataField> getRawQueryResponse(String request) {
-        return getResponse(request);
+        try {
+            return getResponse(request);
+        } catch (HibernateException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<DataField> getResponse(String request) {
