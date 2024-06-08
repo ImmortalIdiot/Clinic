@@ -21,20 +21,12 @@ import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class RemovePatientController {
 
     private final DatabaseService databaseService = new DatabaseService(JDBCRunner.SESSION_FACTORY);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button removePatientAgeBackButton;
@@ -131,14 +123,14 @@ public class RemovePatientController {
 
     @FXML
     void initialize() {
-        assert removePatientAgeBackButton != null : "fx:id=\"First_table_back\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientSurnameTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientNameTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientPatronymicTextField != null : "fx:id=\"first_table_input_place_field\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientSurnameLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientNameLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert patientPatronymicLabel != null : "fx:id=\"first_table_input_place_label\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert findAndRemoveButton != null : "fx:id=\"first_table_search_button\" was not injected: check your FXML file 'third_table.fxml'.";
-        assert removePatientTableView != null : "fx:id=\"first_table_table_view\" was not injected: check your FXML file 'third_table.fxml'.";
+        assert removePatientAgeBackButton != null : "fx:id=\"removePatientAgeBackButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientSurnameTextField != null : "fx:id=\"patientSurnameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientNameTextField != null : "fx:id=\"patientNameTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientPatronymicTextField != null : "fx:id=\"patientPatronymicTextField\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientSurnameLabel != null : "fx:id=\"patientSurnameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientNameLabel != null : "fx:id=\"patientNameLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert patientPatronymicLabel != null : "fx:id=\"patientPatronymicLabel\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert findAndRemoveButton != null : "fx:id=\"findAndRemoveButton\" was not injected: check your FXML file 'remove-patient.fxml'.";
+        assert removePatientTableView != null : "fx:id=\"removePatientTableView\" was not injected: check your FXML file 'remove-patient.fxml'.";
     }
 }
