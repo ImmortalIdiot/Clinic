@@ -165,6 +165,10 @@ public class DatabaseService {
         );
     }
 
+    public List<DataField> getRawQueryResponse(String request) {
+        return getResponse(request);
+    }
+
     private List<DataField> getResponse(String request) {
         Session session = sessionFactory.openSession();
         Query query = session.createNativeQuery(request);
