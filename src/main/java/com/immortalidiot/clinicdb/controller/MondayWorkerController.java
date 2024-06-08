@@ -1,6 +1,6 @@
 package com.immortalidiot.clinicdb.controller;
 
-import com.immortalidiot.clinicdb.HelloApplication;
+import com.immortalidiot.clinicdb.ClinicDB;
 import com.immortalidiot.clinicdb.JDBCRunner;
 import com.immortalidiot.clinicdb.model.DataField;
 import com.immortalidiot.clinicdb.service.DatabaseService;
@@ -45,7 +45,7 @@ public class MondayWorkerController {
     @FXML
     public void moveToMenu(ActionEvent event) throws IOException {
         Parent firstTableView = FXMLLoader.load(
-                Objects.requireNonNull(HelloApplication.class.getResource("menu.fxml"))
+                Objects.requireNonNull(ClinicDB.class.getResource("menu.fxml"))
         );
 
         Scene firstTableViewScene = new Scene(firstTableView, 1024, 720);

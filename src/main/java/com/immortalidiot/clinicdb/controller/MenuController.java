@@ -1,6 +1,6 @@
 package com.immortalidiot.clinicdb.controller;
 
-import com.immortalidiot.clinicdb.HelloApplication;
+import com.immortalidiot.clinicdb.ClinicDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,7 +85,7 @@ public class MenuController {
         if (!resource.contains(".fxml")) return;
 
         Parent view = FXMLLoader.load(
-                Objects.requireNonNull(HelloApplication.class.getResource(resource))
+                Objects.requireNonNull(ClinicDB.class.getResource(resource))
         );
 
         Scene viewScene = new Scene(view, 1024, 720);
