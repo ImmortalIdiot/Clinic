@@ -36,7 +36,8 @@ public class DatabaseService {
 
     public List<DataField> getPatients() {
         return getResponse(
-                "SELECT name AS \"Имя\", " +
+                "SELECT patient_id AS \"Идентификатор\", " +
+                "name AS \"Имя\", " +
                 "surname AS \"Фамилия\", " +
                 "patronymic AS \"Отчество\", " +
                 "age AS \"Возраст\", " +
