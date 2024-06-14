@@ -2,8 +2,6 @@ package com.immortalidiot.clinicdb.controller;
 
 import com.immortalidiot.clinicdb.ClinicDB;
 import com.immortalidiot.clinicdb.JDBCRunner;
-import com.immortalidiot.clinicdb.entity.MedicalCard;
-import com.immortalidiot.clinicdb.entity.Patient;
 import com.immortalidiot.clinicdb.model.DataField;
 import com.immortalidiot.clinicdb.service.DatabaseService;
 import com.immortalidiot.clinicdb.writer.TableWriter;
@@ -78,7 +76,7 @@ public class RemovePatientController {
         try {
             validateInputFields(surname, name, patronymic);
 
-            removePatient(surname, name, patronymic);
+            databaseService.removePatient(surname, name, patronymic);
             List<DataField> data = databaseService.getPatients();
             error.setText("");
             TableWriter.write(removePatientTableView, data);
@@ -91,40 +89,6 @@ public class RemovePatientController {
         if (surname.isBlank()) throw new IllegalArgumentException("Поле с фамилией не может быть пустым!");
         if (name.isBlank()) throw new IllegalArgumentException("Поле с именем не может быть пустым!");
         if (patronymic.isBlank()) throw new IllegalArgumentException("Поле с отчеством не может быть пустым!");
-    }
-
-    private void removePatient(String surname, String name, String patronymic) {
-        SessionFactory sessionFactory = JDBCRunner.SESSION_FACTORY;
-
-        sessionFactory.inTransaction(session -> {
-
-            try {
-                String hqlSelectPatient =
-                        "FROM patients WHERE surname = :surname AND name = :name AND patronymic = :patronymic";
-
-                Patient patient = session.createQuery(hqlSelectPatient, Patient.class)
-                        .setParameter("surname", surname)
-                        .setParameter("name", name)
-                        .setParameter("patronymic", patronymic)
-                        .uniqueResult();
-
-                if (patient == null) throw new NullPointerException();
-
-                String hqlSelectMedicalCard =
-                        "FROM medical_cards WHERE patients.patientId = :patientId";
-
-                MedicalCard medicalCard = session.createQuery(hqlSelectMedicalCard, MedicalCard.class)
-                        .setParameter("patientId", patient.patientId)
-                        .uniqueResult();
-
-                if (medicalCard == null) throw new NullPointerException();
-
-                session.remove(medicalCard);
-                session.remove(patient);
-            } catch (IllegalArgumentException e) {
-                error.setText("Такой пациент с мед картой не найден");
-            }
-        });
     }
 
     @FXML
