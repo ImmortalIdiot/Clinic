@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.util.List;
