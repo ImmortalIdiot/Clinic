@@ -1,6 +1,8 @@
 package com.immortalidiot.clinicdb.service;
 
 import com.immortalidiot.clinicdb.collector.PairCollector;
+import com.immortalidiot.clinicdb.entity.MedicalCard;
+import com.immortalidiot.clinicdb.entity.Patient;
 import com.immortalidiot.clinicdb.model.DataField;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -165,6 +167,43 @@ public class DatabaseService {
                 "ORDER BY p.patient_id;",
             dayOfWeek
         );
+    }
+
+    public void removePatient(String surname, String name, String patronymic) {
+        sessionFactory.inTransaction(session -> {
+            String getPatientsByFullName = "SELECT * FROM patients " +
+                    "WHERE surname = :surname AND name = :name AND patronymic = :patronymic";
+
+            List<Patient> patients = session
+                    .createNativeQuery(getPatientsByFullName, Patient.class)
+                    .setParameter("surname", surname)
+                    .setParameter("name", name)
+                    .setParameter("patronymic", patronymic)
+                    .list();
+
+            if (patients.size() == 0) throw new IllegalArgumentException("Пациентом с таким ФИО не найдено");
+            else {
+                patients.forEach(patient -> {
+                    String getMedicalCardsByPatientId = "SELECT * FROM medical_cards WHERE patient_id = :patientId";
+
+                    List<MedicalCard> medicalCards = session
+                            .createNativeQuery(getMedicalCardsByPatientId, MedicalCard.class)
+                            .setParameter("patientId", patient.patientId)
+                            .list();
+
+                    medicalCards.forEach(medicalCard -> {
+                        String deleteVisitsByCardId = "DELETE FROM visit WHERE patient_card_id = :cardId";
+                        session.createNativeQuery(deleteVisitsByCardId)
+                                .setParameter("cardId", medicalCard.cardId)
+                                .executeUpdate();
+
+                        session.remove(medicalCard);
+                    });
+
+                    session.remove(patient);
+                });
+            }
+        });
     }
 
     public List<DataField> getRawQueryResponse(String request) {
