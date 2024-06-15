@@ -51,7 +51,8 @@ public class DatabaseService {
 
     public List<DataField> getPatientsByGender(String gender) {
         return getResponse(
-                "SELECT name AS \"Имя\", " +
+                "SELECT patient_id AS \"Идентификатор\", " +
+                "name AS \"Имя\", " +
                 "surname AS \"Фамилия\", " +
                 "patronymic AS \"Отчество\" " +
                 "FROM patients " +
